@@ -59,7 +59,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._rocks, this._bullets, this._players];
+    this._categories = [this._players, this._bullets];
 },
 
 init: function() {
@@ -84,7 +84,7 @@ generatePlayer : function(descr) {
 },
 
 update: function(du) {
-/*
+
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
@@ -105,12 +105,12 @@ update: function(du) {
         }
     }
 
-    if (this._rocks.length === 0) this._generateRocks();
-*/
+  //  if (this._rocks.length === 0) this._generateRocks();
+
 },
 
 render: function(ctx) {
-/*
+
     var debugX = 10, debugY = 100;
 
     for (var c = 0; c < this._categories.length; ++c) {
@@ -128,7 +128,7 @@ render: function(ctx) {
 
         }
         debugY += 10;
-    }*/
+    }
 }
 
 }

@@ -61,7 +61,7 @@ Player.prototype.warp = function () {
 
     this._isWarping = true;
     this._scaleDirn = -1;
-    this.warpSound.play();
+    //this.warpSound.play();
 
     // Unregister me from my old posistion
     // ...so that I can't be collided with while warping
