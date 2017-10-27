@@ -48,7 +48,7 @@ var g_ctx = g_canvas.getContext("2d");
 
 function createInitialShips() {
 
-    entityManager.generateShip({
+    entityManager.generatePlayer({
         cx : 200,
         cy : 200
     });
@@ -86,7 +86,7 @@ function updateSimulation(du) {
     entityManager.update(du);
 
     // Prevent perpetual firing!
-    eatKey(Ship.prototype.KEY_FIRE);
+    eatKey(Player.prototype.KEY_FIRE);
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
