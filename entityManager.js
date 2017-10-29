@@ -29,24 +29,14 @@ var entityManager = {
 
 _players   : [],
 _bullets : [],
-<<<<<<< HEAD
 _pleyerId : 1,
-=======
-
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 // "PRIVATE" METHODS
 
 _generatePlayers : function() {
     var i,
-<<<<<<< HEAD
         NUM_PLAYERS = 2;
 
     for (i = 0; i < NUM_PLAYERS-1; ++i) {
-=======
-        NUM_ROCKS = 2;
-
-    for (i = 0; i < NUM_ROCKS; ++i) {
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
         this.generatePlayer();
     }
 },
@@ -90,14 +80,10 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
 
 
 generatePlayer : function(descr) {
-<<<<<<< HEAD
   var p = new Player(descr);
   p.setKeys(this._pleyerId);
     this._players.push(p);
     this._pleyerId++;
-=======
-    this._players.push(new Player(descr));
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 },
 
 update: function(du) {
@@ -129,22 +115,12 @@ update: function(du) {
 render: function(ctx) {
 
     var debugX = 10, debugY = 100;
-<<<<<<< HEAD
     g_ground.drawBricks(ctx);
-=======
-
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
 
-<<<<<<< HEAD
 
-=======
-        if (!this._bShowRocks &&
-            aCategory == this._rocks)
-            continue;
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 
         for (var i = 0; i < aCategory.length; ++i) {
 

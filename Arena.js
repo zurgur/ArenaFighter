@@ -86,21 +86,13 @@ function updateSimulation(du) {
     entityManager.update(du);
 
     // Prevent perpetual firing!
-<<<<<<< HEAD
     //eatKey(Player.prototype.KEY_FIRE);
-=======
-    eatKey(Player.prototype.KEY_FIRE);
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
 
 var g_allowMixedActions = true;
-<<<<<<< HEAD
 var g_useGravity = true;
-=======
-var g_useGravity = false;
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 var g_useAveVel = true;
 var g_renderSpatialDebug = false;
 
@@ -117,10 +109,6 @@ var KEY_0 = keyCode('0');
 var KEY_1 = keyCode('1');
 var KEY_2 = keyCode('2');
 
-<<<<<<< HEAD
-=======
-var KEY_K = keyCode('K');
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 
 function processDiagnostics() {
 
@@ -133,31 +121,7 @@ function processDiagnostics() {
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
-<<<<<<< HEAD
 
-=======
-    if (eatKey(KEY_HALT)) entityManager.haltShips();
-
-    if (eatKey(KEY_RESET)) entityManager.resetShips();
-
-    if (eatKey(KEY_0)) entityManager.toggleRocks();
-
-    if (eatKey(KEY_1)) entityManager.generateShip({
-        cx : g_mouseX,
-        cy : g_mouseY,
-
-        sprite : g_sprites.ship});
-
-    if (eatKey(KEY_2)) entityManager.generateShip({
-        cx : g_mouseX,
-        cy : g_mouseY,
-
-        sprite : g_sprites.ship2
-        });
-
-    if (eatKey(KEY_K)) entityManager.killNearestShip(
-        g_mouseX, g_mouseY);
->>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 }
 
 
