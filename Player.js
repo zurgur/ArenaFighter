@@ -26,7 +26,10 @@ function Player(descr) {
     // Set normal drawing scale, and warp state off
     this._scale = 1;
     this._isWarping = false;
+<<<<<<< HEAD
     this.jump = false;
+=======
+>>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 };
 
 Player.prototype = new Entity();
@@ -37,6 +40,7 @@ Player.prototype.rememberResets = function () {
     this.reset_cy = this.cy;
     this.reset_rotation = this.rotation;
 };
+<<<<<<< HEAD
 Player.prototype.setKeys = function(i){
   if(i ===1){
     this.KEY_THRUST = 'W'.charCodeAt(0);
@@ -54,6 +58,15 @@ Player.prototype.setKeys = function(i){
 
 };
 
+=======
+
+Player.prototype.KEY_THRUST = 'W'.charCodeAt(0);
+Player.prototype.KEY_RETRO  = 'S'.charCodeAt(0);
+Player.prototype.KEY_LEFT   = 'A'.charCodeAt(0);
+Player.prototype.KEY_RIGHT  = 'D'.charCodeAt(0);
+
+Player.prototype.KEY_FIRE   = ' '.charCodeAt(0);
+>>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 
 // Initial, inheritable, default values
 Player.prototype.rotation = 0;
@@ -72,6 +85,10 @@ Player.prototype.warp = function () {
 
     this._isWarping = true;
     this._scaleDirn = -1;
+<<<<<<< HEAD
+=======
+    //this.warpSound.play();
+>>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 
     // Unregister me from my old posistion
     // ...so that I can't be collided with while warping
@@ -191,15 +208,30 @@ Player.prototype.computeGravity = function () {
     return g_useGravity ? NOMINAL_GRAVITY : 0;
 };
 
+<<<<<<< HEAD
 var NOMINAL_THRUST = +1000;
+=======
+var NOMINAL_THRUST = +0.2;
+var NOMINAL_RETRO  = -0.1;
+>>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 
 Player.prototype.computeThrustMag = function () {
 
     var thrust = 0;
+<<<<<<< HEAD
     if ((keys[this.KEY_THRUST]) && this.jump){
         thrust += NOMINAL_THRUST;
     }
 
+=======
+
+    if (keys[this.KEY_THRUST]) {
+        thrust += NOMINAL_THRUST;
+    }
+    if (keys[this.KEY_RETRO]) {
+        thrust += NOMINAL_RETRO;
+    }
+>>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 
     return thrust;
 };
@@ -229,6 +261,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
     // bounce
     if (g_useGravity) {
 
+<<<<<<< HEAD
 	      var minY = g_sprites.ship.height / 2;
 	      var maxY = g_canvas.height - minY;
 
@@ -242,6 +275,20 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
                this.jump = true;
              }
            }
+=======
+	var minY = g_sprites.player.height / 2;
+	var maxY = g_canvas.height - minY;
+
+	// Ignore the bounce if the Player is already in
+	// the "border zone" (to avoid trapping them there)
+	if (this.cy > maxY || this.cy < minY) {
+	    // do nothing
+	} else if (nextY > maxY || nextY < minY) {
+            this.velY = oldVelY * -0.9;
+            intervalVelY = this.velY;
+        }
+    }
+>>>>>>> 9610ffdeea4575efc734d0801ce3fa34d2433f96
 
     // s = s + v_ave * t
     this.cx += du * intervalVelX;
