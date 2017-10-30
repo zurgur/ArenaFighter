@@ -30,6 +30,7 @@ var entityManager = {
 _players   : [],
 _bullets : [],
 _playerId : 1,
+_grounds : [],
 // "PRIVATE" METHODS
 
 _generatePlayers : function() {
@@ -59,7 +60,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._players, this._bullets];
+    this._categories = [this._players, this._bullets, this._grounds];
 },
 
 init: function() {
@@ -86,6 +87,10 @@ generatePlayer : function(descr) {
     this._playerId++;
 },
 
+generateGrounds : function(descr) {
+  this._grounds.push(new Ground(descr));
+},
+
 
 update: function(du) {
     for (var c = 0; c < this._categories.length; ++c) {
@@ -94,9 +99,7 @@ update: function(du) {
         var i = 0;
 
         while (i < aCategory.length) {
-
             var status = aCategory[i].update(du);
-
             if (status === this.KILL_ME_NOW) {
                 // remove the dead guy, and shuffle the others down to
                 // prevent a confusing gap from appearing in the array
@@ -116,7 +119,6 @@ render: function(ctx) {
     g_sprites.back.drawBackrond(ctx,g_prevUpdateDu);
 
     var debugX = 10, debugY = 100;
-    g_ground.drawBricks(ctx);
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];

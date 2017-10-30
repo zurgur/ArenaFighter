@@ -1,25 +1,25 @@
+"use strict";
+
 function Ground(descr) {
-    for (var property in descr) {
-        this[property] = descr[property];
-    }
-}
-//global wall has a arry that stores the  wall states
-var g_ground = new Ground({
-  width : 20,
-  height : 60,
-  cx : 300,
-  cy : 470,
-});
+    this.setup(descr);
+};
 
+Ground.prototype = new Entity();
 
+Ground.prototype.type = "Ground";
 //draw the bricks
-Ground.prototype.drawBricks = function(ctx){
+Ground.prototype.render = function(ctx){
   ctx.beginPath();
   ctx.rect(this.cx, this.cy, this.width, this.height);
   ctx.fillStyle = "blue";
   ctx.fill();
   ctx.closePath();
-}
+};
+
+Ground.prototype.update = function (du) {
+  spatialManager.unregister(this);
+  spatialManager.register(this);
+};
 
 
 Ground.prototype.collidesWithGround = function(posX,posY,width,height){
@@ -32,4 +32,4 @@ Ground.prototype.collidesWithGround = function(posX,posY,width,height){
       } else {
         return false;
       }
-}
+};

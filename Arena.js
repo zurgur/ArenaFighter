@@ -55,6 +55,31 @@ function createInitialShips() {
 
 }
 
+function createInitalGrounds() {
+  entityManager.generateGrounds(new Ground({
+    width : 300,
+    height : 30,
+    cx : 150,
+    cy : 400,
+  }));
+
+  entityManager.generateGrounds(new Ground({
+    width : 300,
+    height : 30,
+    cx : 300,
+    cy : 350,
+  }));
+
+  entityManager.generateGrounds(new Ground({
+    width : 300,
+    height : 30,
+    cx : 100,
+    cy : 300,
+  }));
+
+
+}
+
 // =============
 // GATHER INPUTS
 // =============
@@ -177,6 +202,7 @@ function preloadDone() {
 
     entityManager.init();
     createInitialShips();
+    createInitalGrounds();
 
     main.init();
 }
