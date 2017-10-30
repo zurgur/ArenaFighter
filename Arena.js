@@ -58,23 +58,23 @@ function createInitialShips() {
 function createInitalGrounds() {
   entityManager.generateGrounds(new Ground({
     width : 300,
-    height : 30,
+    height : 15,
     cx : 150,
-    cy : 400,
-  }));
-
-  entityManager.generateGrounds(new Ground({
-    width : 300,
-    height : 30,
-    cx : 300,
     cy : 350,
   }));
 
   entityManager.generateGrounds(new Ground({
-    width : 300,
-    height : 30,
-    cx : 100,
-    cy : 300,
+    width : 200,
+    height : 15,
+    cx : 350,
+    cy : 250,
+  }));
+
+  entityManager.generateGrounds(new Ground({
+    width : 200,
+    height : 15,
+    cx : 50,
+    cy : 250,
   }));
 
 

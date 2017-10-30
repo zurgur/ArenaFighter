@@ -233,7 +233,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
     if (g_useGravity) {
 
 	      var minY = g_sprites.ship.height / 2;
-	      var maxY = g_canvas.height - minY;
+	      var maxY = g_canvas.height - minY - 45;
 
 	       // Ignore the bounce if the Player is already in
 	        // the "border zone" (to avoid trapping them there)
@@ -295,13 +295,14 @@ Player.prototype.halt = function () {
 var NOMINAL_MOVEMENT_RATE = 3;
 
 Player.prototype.updateRotation = function (du) {
+    var rate = NOMINAL_MOVEMENT_RATE * du;
     if (keys[this.KEY_LEFT]) {
-        if (!spatialManager.groundCollision(this.cx-NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
+        if (!spatialManager.groundCollision(this.cx-rate, this.cy, this.width, this.height)){
           this.cx -= NOMINAL_MOVEMENT_RATE * du;
         }
     }
     if (keys[this.KEY_RIGHT]){
-      if (!spatialManager.groundCollision(this.cx+NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
+      if (!spatialManager.groundCollision(this.cx+rate, this.cy, this.width, this.height)){
         this.cx += NOMINAL_MOVEMENT_RATE * du;
       }
     }

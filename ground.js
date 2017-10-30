@@ -11,7 +11,7 @@ Ground.prototype.type = "Ground";
 Ground.prototype.render = function(ctx){
   ctx.beginPath();
   ctx.rect(this.cx, this.cy, this.width, this.height);
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "#663300";
   ctx.fill();
   ctx.closePath();
 };
@@ -23,10 +23,12 @@ Ground.prototype.update = function (du) {
 
 
 Ground.prototype.collidesWithGround = function(posX,posY,width,height){
-  if (posY + height/2 > this.cy
-      && posX - width/2 < this.cx + this.width
-      && posX + width/2 > this.cx
-      && posY - height/2 < this.cy + this.height
+  var halfWidth = width/2;
+  var halfHeight = height/2;
+  if (posY + halfHeight > this.cy
+      && posX - halfWidth < this.cx + this.width
+      && posX + halfWidth > this.cx
+      && posY - halfHeight < this.cy + this.height
       ){
         return true;
       } else {
