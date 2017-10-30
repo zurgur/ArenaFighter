@@ -136,11 +136,9 @@ function processDiagnostics() {
 //
 // It then delegates the game-specific logic to `gameRender`
 
-
 // GAME-SPECIFIC RENDERING
 
 function renderSimulation(ctx) {
-
     entityManager.render(ctx);
 
     if (g_renderSpatialDebug) spatialManager.render(ctx);
@@ -157,6 +155,7 @@ function requestPreloads() {
 
     var requiredImages = {
         ship   : "sprites/playerSprite.png",
+        img    : "sprites/parallax.png",
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
         rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
     };
@@ -167,6 +166,7 @@ function requestPreloads() {
 var g_sprites = {};
 
 function preloadDone() {
+   g_sprites.back = new Background(g_images.img);
 
     g_sprites.ship  = new Sprite(g_images.ship);
     g_sprites.ship2 = new Sprite(g_images.ship2);

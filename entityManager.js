@@ -109,9 +109,11 @@ update: function(du) {
     }
 
 
+
 },
 
 render: function(ctx) {
+    g_sprites.back.drawBackrond(ctx,g_prevUpdateDu);
 
     var debugX = 10, debugY = 100;
     g_ground.drawBricks(ctx);
