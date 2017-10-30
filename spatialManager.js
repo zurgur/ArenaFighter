@@ -64,7 +64,6 @@ unregister: function(entity) {
 findEntityInRange: function(posX, posY, radius) {
 
     // TODO: YOUR STUFF HERE!
-
   for (let i = 0; i < this._entities.length; i++) {
 		let ent = this._entities[i];
 		if (ent) {
@@ -89,6 +88,15 @@ render: function(ctx) {
         util.strokeCircle(ctx, pos.posX, pos.posY, e.getRadius());
     }
     ctx.strokeStyle = oldStyle;
-}
+},
 
+groundCollision: function(posX,posY,width,height){
+
+    for (var i = 0; i < this._entities.length; i++){
+      if (this._entities[i].type === "Ground") {
+        if (this._entities[i].collidesWithGround(posX,posY,width,height)) return true;
+      }
+    }
+    return false;
+}
 }

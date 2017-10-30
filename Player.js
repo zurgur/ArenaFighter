@@ -65,6 +65,7 @@ Player.prototype.launchVel = 2;
 Player.prototype.numSubSteps = 1;
 Player.prototype.height = 62;
 Player.prototype.width = 40;
+Player.prototype.type = "Player";
 /*
 // HACKED-IN AUDIO (no preloading)
 Player.prototype.warpSound = new Audio(
@@ -238,7 +239,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
 	        // the "border zone" (to avoid trapping them there)
 	         if (this.cy > maxY || this.cy < minY) {
 	            // do nothing
-            } else if (nextY > maxY || nextY < minY || g_ground.collidesWithGround(nextX, nextY, this.width, this.height)) {
+            } else if (nextY > maxY || nextY < minY || spatialManager.groundCollision(nextX, nextY, this.width, this.height)) {
                this.velY = 0;
                intervalVelY = this.velY;
                this.jump = true;
@@ -295,12 +296,12 @@ var NOMINAL_MOVEMENT_RATE = 3;
 
 Player.prototype.updateRotation = function (du) {
     if (keys[this.KEY_LEFT]) {
-        if (!g_ground.collidesWithGround(this.cx-NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
+        if (!spatialManager.groundCollision(this.cx-NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
           this.cx -= NOMINAL_MOVEMENT_RATE * du;
         }
     }
     if (keys[this.KEY_RIGHT]){
-      if (!g_ground.collidesWithGround(this.cx+NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
+      if (!spatialManager.groundCollision(this.cx+NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
         this.cx += NOMINAL_MOVEMENT_RATE * du;
       }
     }
