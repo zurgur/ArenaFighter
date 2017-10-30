@@ -1,15 +1,9 @@
 /*
-
 entityManager.js
-
 A module which handles arbitrary entity-management for "Asteroids"
-
-
 We create this module as a single global object, and initialise it
 with suitable 'data' and 'methods'.
-
 "Private" properties are denoted by an underscore prefix convention.
-
 */
 
 

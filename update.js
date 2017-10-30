@@ -50,14 +50,16 @@ function update(dt) {
 
 // Togglable Pause Mode
 //
-var KEY_PAUSE = 'P'.charCodeAt(0);
+var KEY_PAUSE = 13;
 //var KEY_STEP  = 'O'.charCodeAt(0);
 
-var g_isUpdatePaused = false;
+var g_isUpdatePaused = true;
 
 function shouldSkipUpdate() {
     if (eatKey(KEY_PAUSE)) {
         g_isUpdatePaused = !g_isUpdatePaused;
+        canvas.height = 0;
+        console.log("start");
     }
-    return g_isUpdatePaused && !eatKey(KEY_STEP);
+    return g_isUpdatePaused;
 }

@@ -263,8 +263,8 @@ Player.prototype.maybeFireBullet = function () {
         var relVelY = dY * relVel;
 
         entityManager.fireBullet(
-           this.cx + dX * launchDist, this.cy + dY * launchDist,
-           this.velX + relVelX, this.velY + relVelY,
+           this.cx + dX * launchDist +25, this.cy + dY * launchDist,
+           this.velY - relVelY,this.velX + relVelX,
            this.rotation);
 
     }
