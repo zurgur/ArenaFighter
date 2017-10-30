@@ -29,12 +29,12 @@ var entityManager = {
 
 _players   : [],
 _bullets : [],
-_pleyerId : 1,
+_playerId : 1,
 // "PRIVATE" METHODS
 
 _generatePlayers : function() {
     var i,
-        NUM_PLAYERS = 2;
+        NUM_PLAYERS = 1;
 
     for (i = 0; i < NUM_PLAYERS-1; ++i) {
         this.generatePlayer();
@@ -81,13 +81,13 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
 
 generatePlayer : function(descr) {
   var p = new Player(descr);
-  p.setKeys(this._pleyerId);
+  p.setKeys(this._playerId);
     this._players.push(p);
-    this._pleyerId++;
+    this._playerId++;
 },
 
-update: function(du) {
 
+update: function(du) {
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
@@ -108,7 +108,6 @@ update: function(du) {
         }
     }
 
-  //  if (this._rocks.length === 0) this._generateRocks();
 
 },
 

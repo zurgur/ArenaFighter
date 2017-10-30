@@ -63,6 +63,8 @@ Player.prototype.velX = 0;
 Player.prototype.velY = 0;
 Player.prototype.launchVel = 2;
 Player.prototype.numSubSteps = 1;
+Player.prototype.height = 62;
+Player.prototype.width = 40;
 /*
 // HACKED-IN AUDIO (no preloading)
 Player.prototype.warpSound = new Audio(
@@ -191,13 +193,14 @@ Player.prototype.computeGravity = function () {
     return g_useGravity ? NOMINAL_GRAVITY : 0;
 };
 
-var NOMINAL_THRUST = +100;
+var NOMINAL_JUMP = 5;
 
 Player.prototype.computeThrustMag = function () {
 
     var thrust = 0;
     if ((keys[this.KEY_THRUST]) && this.jump){
-        thrust += NOMINAL_THRUST;
+        this.jump = false;
+        thrust += NOMINAL_JUMP;
     }
 
 
@@ -205,7 +208,6 @@ Player.prototype.computeThrustMag = function () {
 };
 
 Player.prototype.applyAccel = function (accelX, accelY, du) {
-
     // u = original velocity
     var oldVelX = this.velX;
     var oldVelY = this.velY;
@@ -236,7 +238,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
 	        // the "border zone" (to avoid trapping them there)
 	         if (this.cy > maxY || this.cy < minY) {
 	            // do nothing
-	           } else if (nextY > maxY || nextY < minY) {
+            } else if (nextY > maxY || nextY < minY || g_ground.collidesWithGround(nextX, nextY, this.width, this.height)) {
                this.velY = 0;
                intervalVelY = this.velY;
                this.jump = true;
@@ -289,14 +291,18 @@ Player.prototype.halt = function () {
     this.velY = 0;
 };
 
-var NOMINAL_ROTATE_RATE = 0.1;
+var NOMINAL_MOVEMENT_RATE = 3;
 
 Player.prototype.updateRotation = function (du) {
     if (keys[this.KEY_LEFT]) {
-        this.rotation -= NOMINAL_ROTATE_RATE * du;
+        if (!g_ground.collidesWithGround(this.cx-NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
+          this.cx -= NOMINAL_MOVEMENT_RATE * du;
+        }
     }
-    if (keys[this.KEY_RIGHT]) {
-        this.rotation += NOMINAL_ROTATE_RATE * du;
+    if (keys[this.KEY_RIGHT]){
+      if (!g_ground.collidesWithGround(this.cx+NOMINAL_MOVEMENT_RATE * du, this.cy, this.width, this.height)){
+        this.cx += NOMINAL_MOVEMENT_RATE * du;
+      }
     }
 };
 
