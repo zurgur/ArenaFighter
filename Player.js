@@ -179,7 +179,7 @@ Player.prototype.computeSubStep = function (du) {
 
     accelY += this.computeGravity();
 
-    this.applyAccel(accelX, accelY, du);
+    this.applyAccel(accelX, accelY, 1);
 
     this.wrapPosition();
 
@@ -188,13 +188,13 @@ Player.prototype.computeSubStep = function (du) {
     }
 };
 
-var NOMINAL_GRAVITY = 0.12;
+var NOMINAL_GRAVITY = 0.2;
 
 Player.prototype.computeGravity = function () {
     return g_useGravity ? NOMINAL_GRAVITY : 0;
 };
 
-var NOMINAL_JUMP = 5;
+var NOMINAL_JUMP = 7;
 
 Player.prototype.computeThrustMag = function () {
 
