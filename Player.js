@@ -28,6 +28,7 @@ function Player(descr) {
     this._isWarping = false;
     this.jump = false;
     this.hanging = false;
+    this.lastDirection = "right";
 };
 
 Player.prototype = new Entity();
@@ -142,12 +143,11 @@ Player.prototype.update = function (du) {
     var minY = g_sprites.ship.height / 2;
     var maxY = g_canvas.height - minY - 44;
 
-    if (this.cy+1 < maxY && !spatialManager.groundCollision(this.cx, this.cy+1, this.width, this.height)){
+    if (this.cy+1 < maxY && !spatialManager.groundCollision(this.cx, this.cy+1, this.width-10, this.height)){
       this.jump = false;
     } else {
       this.jump = true;
     }
-
     //player is no longer hanging if he is moving up or down
     if (this.velY !== 0){
       this.hanging = false;
@@ -256,7 +256,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
             } else if (nextY > maxY || nextY < minY || spatialManager.groundCollision(nextX, nextY, this.width, this.height)) {
                if(nextY < this.cy && spatialManager.groundCollision(nextX, nextY, this.width, this.height)){
                  this.hanging = true;
-               } 
+               }
                this.velY = 0;
                intervalVelY = this.velY;
              }
@@ -313,11 +313,13 @@ var NOMINAL_MOVEMENT_RATE = 3;
 Player.prototype.updateRotation = function (du) {
     var rate = NOMINAL_MOVEMENT_RATE * du;
     if (keys[this.KEY_LEFT]) {
+        this.lastDirection = "left";
         if (!spatialManager.groundCollision(this.cx-rate, this.cy, this.width, this.height)){
           this.cx -= NOMINAL_MOVEMENT_RATE * du;
         }
     }
     if (keys[this.KEY_RIGHT]){
+      this.lastDirection = "right";
       if (!spatialManager.groundCollision(this.cx+rate, this.cy, this.width, this.height)){
         this.cx += NOMINAL_MOVEMENT_RATE * du;
       }

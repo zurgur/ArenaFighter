@@ -55,30 +55,19 @@ function createInitialShips() {
 
 }
 
-function createInitalGrounds() {
-  entityManager.generateGrounds(new Ground({
-    width : 300,
-    height : 15,
-    cx : 150,
-    cy : 350,
-  }));
+function createInitialGrounds(cx,cy,w,h) {
+
+    cx = cx - w/2;
+    cy = cy - h/2;
 
   entityManager.generateGrounds(new Ground({
-    width : 200,
-    height : 15,
-    cx : 350,
-    cy : 250,
+    width : w,
+    height : h,
+    cx : cx,
+    cy : cy,
   }));
-
-  entityManager.generateGrounds(new Ground({
-    width : 200,
-    height : 15,
-    cx : 50,
-    cy : 250,
-  }));
-
-
 }
+
 
 // =============
 // GATHER INPUTS
@@ -202,7 +191,53 @@ function preloadDone() {
 
     entityManager.init();
     createInitialShips();
-    createInitalGrounds();
+    createInitialGrounds(200, 550, 200, 15);
+    createInitialGrounds(1600-200, 550, 200, 15);
+    createInitialGrounds(750, 650, 600, 15);
+
+    createInitialGrounds(430, 530, 20, 15);
+    createInitialGrounds(1600-430, 530, 20, 15);
+
+    createInitialGrounds(360, 610, 20, 15);
+    createInitialGrounds(1600-360, 610, 20, 15);
+
+    createInitialGrounds(30, 650, 20, 15);
+    createInitialGrounds(1600 - 30, 650, 20, 15);
+
+    createInitialGrounds(350, 350, 400, 15);
+    createInitialGrounds(1600 - 350, 350, 400, 15);
+
+    createInitialGrounds(600, 470, 180, 15);
+    createInitialGrounds(1600 - 600, 470, 180, 15);
+
+    createInitialGrounds(750, 370, 100, 15);
+
+    createInitialGrounds(750, 0, 1500, 15);
+
+    createInitialGrounds(50, 380, 20, 15);
+    createInitialGrounds(1600-50, 380, 20, 15);
+
+    createInitialGrounds(200, 250, 20, 15);
+    createInitialGrounds(400, 250, 20, 15);
+    createInitialGrounds(600, 250, 20, 15);
+    createInitialGrounds(800, 250, 20, 15);
+    createInitialGrounds(1000, 250, 20, 15);
+    createInitialGrounds(1200, 250, 20, 15);
+    createInitialGrounds(1400, 250, 20, 15);
+
+    createInitialGrounds(100, 165, 20, 15);
+    createInitialGrounds(300, 165, 20, 15);
+    createInitialGrounds(500, 165, 20, 15);
+    createInitialGrounds(700, 165, 20, 15);
+    createInitialGrounds(900, 165, 20, 15);
+    createInitialGrounds(1100, 165, 20, 15);
+    createInitialGrounds(1300, 165, 20, 15);
+    createInitialGrounds(1500, 165, 20, 15);
+
+    createInitialGrounds(200, 80, 20, 15);
+    createInitialGrounds(800, 80, 20, 15);
+    createInitialGrounds(1400, 80, 20, 15);
+
 
     main.init();
 }

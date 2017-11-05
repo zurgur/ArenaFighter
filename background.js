@@ -17,7 +17,7 @@ Background.prototype.drawBackrond = function (ctx,du) {
 
   //draw a box to fill the top of the image
   ctx.beginPath();
-  ctx.rect(0, 0, 1500, 300);
+  ctx.rect(0, 0, 1600, 300);
   ctx.fillStyle = "#8FD0B1";
   ctx.fill();
 
