@@ -193,7 +193,7 @@ function preloadDone() {
     createInitialShips();
     createInitialGrounds(200, 550, 200, 15);
     createInitialGrounds(1600-200, 550, 200, 15);
-    createInitialGrounds(750, 650, 600, 15);
+    createInitialGrounds(800, 650, 600, 15);
 
     createInitialGrounds(430, 530, 20, 15);
     createInitialGrounds(1600-430, 530, 20, 15);
@@ -210,9 +210,11 @@ function preloadDone() {
     createInitialGrounds(600, 470, 180, 15);
     createInitialGrounds(1600 - 600, 470, 180, 15);
 
-    createInitialGrounds(750, 370, 100, 15);
+    createInitialGrounds(800, 360, 150, 15);
 
-    createInitialGrounds(750, 0, 1500, 15);
+    createInitialGrounds(800, 0, 1600, 15);
+
+    createInitialGrounds(800, 550, 100, 15);
 
     createInitialGrounds(50, 380, 20, 15);
     createInitialGrounds(1600-50, 380, 20, 15);
