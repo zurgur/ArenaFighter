@@ -27,6 +27,7 @@ function Player(descr) {
     this._scale = 1;
     this._isWarping = false;
     this.jump = false;
+    this.hanging = false;
 };
 
 Player.prototype = new Entity();
@@ -138,6 +139,19 @@ Player.prototype._moveToASafePlace = function () {
 };
 
 Player.prototype.update = function (du) {
+    var minY = g_sprites.ship.height / 2;
+    var maxY = g_canvas.height - minY - 44;
+
+    if (this.cy+1 < maxY && !spatialManager.groundCollision(this.cx, this.cy+1, this.width, this.height)){
+      this.jump = false;
+    } else {
+      this.jump = true;
+    }
+
+    //sets hanging to false because player jumping after hanging
+    if (this.velY < -6){
+      this.hanging = false;
+    }
 
     // Handle warping
     if (this._isWarping) {
@@ -176,9 +190,7 @@ Player.prototype.computeSubStep = function (du) {
     // Apply thrust directionally, based on our rotation
     var accelX = +Math.sin(this.rotation) * thrust;
     var accelY = -Math.cos(this.rotation) * thrust;
-
     accelY += this.computeGravity();
-
     this.applyAccel(accelX, accelY, 1);
 
     this.wrapPosition();
@@ -197,12 +209,15 @@ Player.prototype.computeGravity = function () {
 var NOMINAL_JUMP = 7;
 
 Player.prototype.computeThrustMag = function () {
-
     var thrust = 0;
     if ((keys[this.KEY_THRUST]) && this.jump){
         this.jump = false;
         thrust += NOMINAL_JUMP;
-    }
+    } else if ((keys[this.KEY_THRUST]) && this.hanging) {
+
+          thrust = NOMINAL_JUMP;
+      }
+
 
 
     return thrust;
@@ -228,21 +243,24 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
     // s = s + v_ave * t
     var nextX = this.cx + intervalVelX * du;
     var nextY = this.cy + intervalVelY * du;
-
     // bounce
     if (g_useGravity) {
 
 	      var minY = g_sprites.ship.height / 2;
-	      var maxY = g_canvas.height - minY - 45;
+	      var maxY = g_canvas.height - minY - 44;
 
 	       // Ignore the bounce if the Player is already in
 	        // the "border zone" (to avoid trapping them there)
 	         if (this.cy > maxY || this.cy < minY) {
 	            // do nothing
             } else if (nextY > maxY || nextY < minY || spatialManager.groundCollision(nextX, nextY, this.width, this.height)) {
+               if(nextY < this.cy && spatialManager.groundCollision(nextX, nextY, this.width, this.height)){
+                 this.hanging = true;
+               } else {
+                 this.hanging = false;
+               }
                this.velY = 0;
                intervalVelY = this.velY;
-               this.jump = true;
              }
            }
 

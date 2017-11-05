@@ -181,8 +181,8 @@ function requestPreloads() {
     var requiredImages = {
         ship   : "sprites/playerSprite.png",
         img    : "sprites/parallax.png",
-        ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
-        rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
+        ship2  : "sprites/ship_2.png",
+        rock   : "sprites/rock.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
