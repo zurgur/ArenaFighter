@@ -148,8 +148,8 @@ Player.prototype.update = function (du) {
       this.jump = true;
     }
 
-    //sets hanging to false because player jumping after hanging
-    if (this.velY < -6){
+    //player is no longer hanging if he is moving up or down
+    if (this.velY !== 0){
       this.hanging = false;
     }
 
@@ -256,9 +256,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
             } else if (nextY > maxY || nextY < minY || spatialManager.groundCollision(nextX, nextY, this.width, this.height)) {
                if(nextY < this.cy && spatialManager.groundCollision(nextX, nextY, this.width, this.height)){
                  this.hanging = true;
-               } else {
-                 this.hanging = false;
-               }
+               } 
                this.velY = 0;
                intervalVelY = this.velY;
              }
