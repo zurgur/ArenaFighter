@@ -116,6 +116,7 @@ render: function(ctx) {
     var p = Scale.Point(this._players[0],this._players[1]);
     ctx.translate(-p.x,-p.y);
     ctx.scale(s,s);
+
     g_sprites.back.drawBackrond(ctx,g_prevUpdateDu);
 
     var debugX = 10, debugY = 100;
@@ -130,6 +131,8 @@ render: function(ctx) {
         }
         debugY += 10;
     }
+    ctx.translate(p.x,p.y);
+
     ctx.restore();
 
 }

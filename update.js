@@ -17,12 +17,23 @@ var g_prevUpdateDu = null;
 //
 var g_isUpdateOdd = false;
 
+var g_playMusic = false;
+
+
+var KEY_MUTE = 'M'.charCodeAt(0);
+
 
 function update(dt) {
 
     // Get out if skipping (e.g. due to pause-mode)
     //
     if (shouldSkipUpdate()) return;
+    if(eatKey(KEY_MUTE)){
+      g_playMusic=!g_playMusic;
+      soundtrack.pause();
+      //soundtrack.currentTime = 0;
+      console.log("hu?");
+    }
 
     // Remember this for later
     //
@@ -46,6 +57,7 @@ function update(dt) {
     g_prevUpdateDu = du;
 
     g_isUpdateOdd = !g_isUpdateOdd;
+
 }
 
 // Togglable Pause Mode

@@ -8,8 +8,8 @@ var Scale ={
     var pos1 = player1.getPos();
     var pos2 = player2.getPos();
     return {
-      x : Math.abs(((pos1.posX + pos2.posX) / 2)),
-      y : Math.abs(((pos1.posY + pos2.posY) / 2))
+      x : Math.abs(((pos1.posX + pos2.posX) / 2)-200),
+      y : Math.abs(((pos1.posY + pos2.posY) / 2)-100)
     }
   }
 
