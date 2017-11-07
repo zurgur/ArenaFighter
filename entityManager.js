@@ -29,7 +29,7 @@ _grounds : [],
 
 _generatePlayers : function() {
     var i,
-        NUM_PLAYERS = 1;
+        NUM_PLAYERS = 2;
 
     for (i = 0; i < NUM_PLAYERS-1; ++i) {
         this.generatePlayer();
@@ -110,15 +110,18 @@ update: function(du) {
 },
 
 render: function(ctx) {
+    ctx.save();
+    var s = Scale.Camera(ctx, this._players[0],this._players[1]);
+    //console.log(s);
+    var p = Scale.Point(this._players[0],this._players[1]);
+    ctx.translate(-p.x,-p.y);
+    ctx.scale(s,s);
     g_sprites.back.drawBackrond(ctx,g_prevUpdateDu);
 
     var debugX = 10, debugY = 100;
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
-
-
-
         for (var i = 0; i < aCategory.length; ++i) {
 
             aCategory[i].render(ctx);
@@ -127,6 +130,8 @@ render: function(ctx) {
         }
         debugY += 10;
     }
+    ctx.restore();
+
 }
 
 }

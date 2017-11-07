@@ -25,7 +25,6 @@ function Player(descr) {
 
     // Set normal drawing scale, and warp state off
     this._scale = 1;
-    this._isWarping = false;
     this.jump = false;
     this.hanging = false;
     this.lastDirection = "right";
@@ -73,38 +72,7 @@ Player.prototype.type = "Player";
 Player.prototype.warpSound = new Audio(
     "sounds/ShipWarp.ogg");
 */
-Player.prototype.warp = function () {
 
-    this._isWarping = true;
-    this._scaleDirn = -1;
-
-    // Unregister me from my old posistion
-    // ...so that I can't be collided with while warping
-    spatialManager.unregister(this);
-};
-
-Player.prototype._updateWarp = function (du) {
-
-    var SHRINK_RATE = 3 / SECS_TO_NOMINALS;
-    this._scale += this._scaleDirn * SHRINK_RATE * du;
-
-    if (this._scale < 0.2) {
-
-        this._moveToASafePlace();
-        this.halt();
-        this._scaleDirn = 1;
-
-    } else if (this._scale > 1) {
-
-        this._scale = 1;
-        this._isWarping = false;
-
-        // Reregister me from my old posistion
-        // ...so that I can be collided with again
-        spatialManager.register(this);
-
-    }
-};
 
 Player.prototype._moveToASafePlace = function () {
 
@@ -154,10 +122,7 @@ Player.prototype.update = function (du) {
     }
 
     // Handle warping
-    if (this._isWarping) {
-        this._updateWarp(du);
-        return;
-    }
+
 
     // TODO: YOUR STUFF HERE! --- Unregister and check for death
     spatialManager.unregister(this);
@@ -176,11 +141,9 @@ Player.prototype.update = function (du) {
 
     // TODO: YOUR STUFF HERE! --- Warp if isColliding, otherwise Register
     var x = spatialManager.findEntityInRange(this.cx,this.cy,this.getRadius());
-    if(x){
-      this.warp()
-    }else{
-      spatialManager.register(this);
-    }
+
+    spatialManager.register(this);
+
 };
 
 Player.prototype.computeSubStep = function (du) {
