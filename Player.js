@@ -241,12 +241,17 @@ Player.prototype.maybeFireBullet = function () {
         var relVel = this.launchVel;
         var relVelX = dX * relVel;
         var relVelY = dY * relVel;
-
-        entityManager.fireBullet(
-           this.cx + dX * launchDist +25, this.cy + dY * launchDist,
-           this.velY - relVelY,this.velX + relVelX,
-           this.rotation);
-
+        if(this.lastDirection==="right"){
+          entityManager.fireBullet(
+            this.cx + dX * launchDist +25, this.cy + dY * launchDist,
+            10,0,
+            this.rotation);
+         }else{
+           entityManager.fireBullet(
+             this.cx + dX * launchDist -25, this.cy + dY * launchDist,
+             -10,0,
+             this.rotation);
+         }
     }
 
 };
@@ -256,7 +261,7 @@ Player.prototype.getRadius = function () {
 };
 
 Player.prototype.takeBulletHit = function () {
-    this.warp();
+    //this.warp();
 };
 
 Player.prototype.reset = function () {
