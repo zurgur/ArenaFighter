@@ -113,6 +113,7 @@ render: function(ctx) {
     ctx.save();
     var s = Scale.Camera(ctx, this._players[0],this._players[1]);
     //console.log(s);
+    //console.log(s);
     var p = Scale.Point(this._players[0],this._players[1]);
     ctx.translate(g_canvas.width/2,g_canvas.height/2);
     ctx.scale(s,s);
