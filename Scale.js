@@ -9,7 +9,9 @@ var Scale ={
     var d4 = util.wrappedDistSq(p2.posX, p2.posY, 0, 0,g_canvas.width, g_canvas.height);
     var d5 = util.wrappedDistSq(p1.posX, p1.posY, 0, 0,g_canvas.width, g_canvas.height);
     var d6 = util.wrappedDistSq(p2.posX, p2.posY, g_canvas.width/2, 0,g_canvas.width, g_canvas.height);
-    var d = Math.min(d1,d2,d3,d4,d5,d6);
+    var d7 = util.wrappedDistSq(p1.posX, p1.posY, g_canvas.width/4, 0,g_canvas.width, g_canvas.height);
+    var d8 = util.wrappedDistSq(p2.posX, p2.posY, (g_canvas.width/4)*3, 0,g_canvas.width, g_canvas.height);
+    var d = Math.min(d1,d2,d3,d4,d5,d6,d7,d8);
 
     return 1+(d/g_canvas.width)/160;
   },
