@@ -22,7 +22,7 @@ var Scale ={
     // the closest distans to point
     var d = Math.min(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10);
 
-    return 1+(d/g_canvas.width)/160;
+    return 1+(d/g_canvas.width)/350;
   },
   Point: function(player1,player2){
     var pos1 = player1.getPos();

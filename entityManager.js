@@ -25,6 +25,7 @@ _players   : [],
 _bullets : [],
 _playerId : 1,
 _grounds : [],
+_pickups : [],
 // "PRIVATE" METHODS
 
 _generatePlayers : function() {
@@ -84,6 +85,9 @@ generatePlayer : function(descr) {
 generateGrounds : function(descr) {
   this._grounds.push(new Ground(descr));
 },
+generatePickups : function(descr) {
+  this._pickups.push(new Ground(descr));
+},
 
 
 update: function(du) {
@@ -104,8 +108,6 @@ update: function(du) {
             }
         }
     }
-
-
 
 },
 
