@@ -181,7 +181,7 @@ function requestPreloads() {
         ship   : "sprites/playerSprite.png",
         bullet : "sprites/BulletIcon.png",
         img    : "sprites/parallax.png",
-        ship2  : "sprites/ship_2.png",
+        ship2  : "sprites/player2Sprite.png",
         rock   : "sprites/rock.png"
     };
 
