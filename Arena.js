@@ -67,6 +67,12 @@ function createInitialGrounds(cx,cy,w,h) {
     cy : cy,
   }));
 }
+function createInitialPickups(cx,cy){
+  entityManager.generatePickups(new Pickup({
+    cx : cx,
+    cy : cy,
+  }));
+}
 
 
 // =============
@@ -100,7 +106,7 @@ function updateSimulation(du) {
     entityManager.update(du);
 
     // Prevent perpetual firing!
-    //eatKey(Player.prototype.KEY_FIRE);
+    eatKey(Player.prototype.KEY_FIRE);
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
@@ -169,6 +175,7 @@ function requestPreloads() {
 
     var requiredImages = {
         ship   : "sprites/playerSprite.png",
+        bullet : "sprites/BulletIcon.png",
         img    : "sprites/parallax.png",
         ship2  : "sprites/ship_2.png",
         rock   : "sprites/rock.png"
@@ -186,11 +193,12 @@ function preloadDone() {
     g_sprites.ship2 = new Sprite(g_images.ship2);
     g_sprites.rock  = new Sprite(g_images.rock);
 
-    g_sprites.bullet = new Sprite(g_images.ship);
+    g_sprites.bullet = new Sprite(g_images.bullet);
     g_sprites.bullet.scale = 0.25;
 
     entityManager.init();
     createInitialShips();
+    createInitialPickups(210,550);
     createInitialGrounds(200, 550, 200, 15);
     createInitialGrounds(1600-200, 550, 200, 15);
     createInitialGrounds(800, 650, 600, 15);
