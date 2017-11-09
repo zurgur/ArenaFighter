@@ -58,6 +58,11 @@ deferredSetup : function () {
     this._categories = [this._players, this._bullets, this._grounds];
 },
 
+destroyPlayers : function () {
+  this._players = [];
+  this._playerId = 1;
+},
+
 init: function() {
     this._generatePlayers();
     //this._generateShip();
@@ -101,6 +106,13 @@ update: function(du) {
             if (status === this.KILL_ME_NOW) {
                 // remove the dead guy, and shuffle the others down to
                 // prevent a confusing gap from appearing in the array
+                if(aCategory[0].type === "Player"){
+                  if(aCategory[i].playerId === 2){
+                    wictory("Player 1");
+                  }else {
+                    wictory("Player 2");
+                  }
+                }
                 aCategory.splice(i,1);
             }
             else {
@@ -113,6 +125,7 @@ update: function(du) {
 
 render: function(ctx) {
     ctx.save();
+    if(this._players.length >1){
     var s = Scale.Camera(ctx, this._players[0],this._players[1]);
     //console.log(s);
     //console.log(s);
@@ -120,7 +133,7 @@ render: function(ctx) {
     ctx.translate(g_canvas.width/2,g_canvas.height/2);
     ctx.scale(s,s);
     ctx.translate(-g_canvas.width/2,-g_canvas.height/2);
-
+    }
     //ctx.translate(p.x*s,p.y*s);
 
     g_sprites.back.drawBackrond(ctx,g_prevUpdateDu);

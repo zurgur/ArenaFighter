@@ -27,9 +27,11 @@ function Player(descr) {
     this._scale = 1;
     this.jump = false;
     this.hanging = false;
-    this.life = 10;
+    this.life = 5;
     this.lastDirection = "right";
-    this.savePos = [[200,200],[1400,200],[500,500]];
+    this.savePos = [[200,200],[1400,200],[470,500]];
+    this._isDeadNow = false;
+    this.playerId = 1;
 };
 
 Player.prototype = new Entity();
@@ -53,6 +55,7 @@ Player.prototype.setKeys = function(i){
     this.KEY_LEFT   = 'J'.charCodeAt(0);
     this.KEY_RIGHT  = 'L'.charCodeAt(0);
     this.KEY_FIRE   = 'O'.charCodeAt(0);
+    this.playerId = 2
   }
 
 };
@@ -267,6 +270,11 @@ Player.prototype.takeBulletHit = function () {
     this.cx = this.savePos[rand][0];
     this.cy = this.savePos[rand][1];
     this.life--;
+    console.log(this.life);
+    if(this.life === 0){
+      console.log("dead");
+      this._isDeadNow = true;
+    }
 };
 
 Player.prototype.reset = function () {

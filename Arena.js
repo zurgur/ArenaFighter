@@ -47,7 +47,7 @@ var g_ctx = g_canvas.getContext("2d");
 // ====================
 
 function createInitialShips() {
-
+  console.log("bý til skip");
     entityManager.generatePlayer({
       cx : 200,
       cy : 200
