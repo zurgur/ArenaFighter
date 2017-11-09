@@ -69,13 +69,10 @@ var g_isUpdatePaused = true;
 
 function shouldSkipUpdate() {
     if (eatKey(KEY_PAUSE)) {
+        g_isUpdatePaused = !g_isUpdatePaused;
         canvas.height = 0;
         winCanvas.height = 0;
-        entityManager.destroyPlayers();
-        createInitialShips();
-        entityManager._generatePlayers();
         console.log("start");
-        g_isUpdatePaused = false;
     }
     return g_isUpdatePaused;
 }
