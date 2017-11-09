@@ -27,7 +27,9 @@ function Player(descr) {
     this._scale = 1;
     this.jump = false;
     this.hanging = false;
+    this.life = 10;
     this.lastDirection = "right";
+    this.savePos = [[200,200],[1400,200],[500,500]];
 };
 
 Player.prototype = new Entity();
@@ -261,7 +263,10 @@ Player.prototype.getRadius = function () {
 };
 
 Player.prototype.takeBulletHit = function () {
-    //this.warp();
+    var rand = Math.floor(Math.random()*3);
+    this.cx = this.savePos[rand][0];
+    this.cy = this.savePos[rand][1];
+    this.life--;
 };
 
 Player.prototype.reset = function () {
