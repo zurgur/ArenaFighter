@@ -30,7 +30,7 @@ _pickups : [],
 
 _generatePlayers : function() {
     var i,
-        NUM_PLAYERS = 2;
+        NUM_PLAYERS = 1;
 
     for (i = 0; i < NUM_PLAYERS-1; ++i) {
         this.generatePlayer();

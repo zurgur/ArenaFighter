@@ -49,8 +49,12 @@ var g_ctx = g_canvas.getContext("2d");
 function createInitialShips() {
 
     entityManager.generatePlayer({
-        cx : 200,
-        cy : 200
+      cx : 200,
+      cy : 200
+    });
+    entityManager.generatePlayer({
+      cx : 1400,
+      cy : 200,
     });
 
 }
