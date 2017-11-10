@@ -56,6 +56,7 @@ Player.prototype.setKeys = function(i){
     this.KEY_RIGHT  = 'L'.charCodeAt(0);
     this.KEY_FIRE   = 'O'.charCodeAt(0);
     this.playerId = 2
+    this.sprite = g_sprites.ship2;
   }
 
 };
