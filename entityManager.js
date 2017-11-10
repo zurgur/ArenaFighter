@@ -55,7 +55,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._players, this._bullets, this._grounds];
+    this._categories = [this._players, this._bullets, this._grounds,this._pickups];
 },
 
 destroyPlayers : function () {
@@ -91,7 +91,7 @@ generateGrounds : function(descr) {
   this._grounds.push(new Ground(descr));
 },
 generatePickups : function(descr) {
-  this._pickups.push(new Ground(descr));
+  this._pickups.push(new Pickup(descr));
 },
 
 

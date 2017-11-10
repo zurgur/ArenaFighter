@@ -47,14 +47,14 @@ var g_ctx = g_canvas.getContext("2d");
 // ====================
 
 function createInitialShips() {
-  console.log("bý til skip");
+  console.log("bý til spilara");
     entityManager.generatePlayer({
       cx : 200,
       cy : 200
     });
     entityManager.generatePlayer({
       cx : 1400,
-      cy : 200,
+      cy : 200
     });
 
 }
@@ -68,13 +68,13 @@ function createInitialGrounds(cx,cy,w,h) {
     width : w,
     height : h,
     cx : cx,
-    cy : cy,
+    cy : cy
   }));
 }
 function createInitialPickups(cx,cy){
   entityManager.generatePickups(new Pickup({
     cx : cx,
-    cy : cy,
+    cy : cy
   }));
 }
 
@@ -202,7 +202,7 @@ function preloadDone() {
 
     entityManager.init();
     createInitialShips();
-    createInitialPickups(210,550);
+    //createInitialPickups(210,550);
     createInitialGrounds(200, 550, 200, 15);
     createInitialGrounds(1600-200, 550, 200, 15);
     createInitialGrounds(800, 650, 600, 15);
