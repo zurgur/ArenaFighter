@@ -62,7 +62,7 @@ Bullet.prototype.update = function (du) {
     this.cx += this.velX * du;
     this.cy += this.velY * du;
 
-    this.rotation += 1 * du;
+
     this.rotation = util.wrapRange(this.rotation,
                                    0, consts.FULL_CIRCLE);
 
@@ -104,7 +104,7 @@ Bullet.prototype.render = function (ctx) {
     }
 
     g_sprites.bullet.drawWrappedCentredAt(
-        ctx, this.cx, this.cy, 1.5
+        ctx, this.cx, this.cy, this.rotation
     );
 
     ctx.globalAlpha = 1;

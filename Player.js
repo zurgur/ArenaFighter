@@ -250,12 +250,12 @@ Player.prototype.maybeFireBullet = function () {
           entityManager.fireBullet(
             this.cx + dX * launchDist +25, this.cy + dY * launchDist,
             10,0,
-            this.rotation);
+            1.5);
          }else{
            entityManager.fireBullet(
              this.cx + dX * launchDist -25, this.cy + dY * launchDist,
              -10,0,
-             this.rotation);
+             -1.5);
          }
     }
 
