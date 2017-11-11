@@ -42,5 +42,18 @@ Pickup.prototype.render = function(ctx){
 //update  power ups
 Pickup.prototype.update = function(du){
   spatialManager.unregister(this);
+  if(this._isDeadNow) {
+    return entityManager.KILL_ME_NOW;
+  }
+  var hitEntity = this.findHitEntity();
+  if(hitEntity) {
+    console.log(hitEntity);
+    var canTakePickup = hitEntity.takePickup;
+    if(canTakePickup){
+      canTakePickup.call(hitEntity);
+      return entityManager.KILL_ME_NOW;
+    }
+  }
+
   spatialManager.register(this);
 };

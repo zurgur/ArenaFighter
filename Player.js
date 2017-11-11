@@ -278,6 +278,11 @@ Player.prototype.takeBulletHit = function () {
     }
 };
 
+Player.prototype.takePickup = function () {
+  console.log("hi I got I pikup");
+  this.life ++;
+}
+
 Player.prototype.reset = function () {
     this.setPos(this.reset_cx, this.reset_cy);
     this.rotation = this.reset_rotation;

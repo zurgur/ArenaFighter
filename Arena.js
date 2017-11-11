@@ -207,7 +207,7 @@ function preloadDone() {
     createInitialPickups(200,50);
     createInitialPickups(1400,50);
     createInitialPickups(800,500);
-    createInitialPickups(800,230);
+    createInitialPickups(800,228);
 
     createInitialGrounds(200, 550, 200, 15);
     createInitialGrounds(1600-200, 550, 200, 15);
