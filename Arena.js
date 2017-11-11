@@ -184,7 +184,8 @@ function requestPreloads() {
         bullet : "sprites/BulletIcon.png",
         img    : "sprites/parallax.png",
         ship2  : "sprites/player2Sprite.png",
-        rock   : "sprites/rock.png"
+        rock   : "sprites/rock.png",
+        cake   : "sprites/cake.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -198,6 +199,7 @@ function preloadDone() {
     g_sprites.ship  = new Sprite(g_images.ship);
     g_sprites.ship2 = new Sprite(g_images.ship2);
     g_sprites.rock  = new Sprite(g_images.rock);
+    g_sprites.cake  = new Sprite(g_images.cake);
 
     g_sprites.bullet = new Sprite(g_images.bullet);
     g_sprites.bullet.scale = 0.25;

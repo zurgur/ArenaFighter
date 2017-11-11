@@ -30,7 +30,6 @@ function Player(descr) {
     this.life = 5;
     this.lastDirection = "right";
     this.savePos = [[200,200],[1400,200],[470,500]];
-    this._isDeadNow = false;
     this.playerId = 1;
 };
 
@@ -278,9 +277,13 @@ Player.prototype.takeBulletHit = function () {
     }
 };
 
-Player.prototype.takePickup = function () {
+Player.prototype.takePickup = function (type) {
   console.log("hi I got I pikup");
-  this.life ++;
+  if(type === "helth"){
+    this.life ++;
+    console.log("now my helth is" + this.life);
+  }
+
 }
 
 Player.prototype.reset = function () {

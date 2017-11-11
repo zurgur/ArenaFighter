@@ -2,6 +2,8 @@
 
 function Pickup(descr) {
     this.setup(descr);
+    this.sprite = this.sprite || g_sprites.cake;
+    this._scale = 2;
 };
 //global power upp
 
@@ -13,31 +15,14 @@ Pickup.prototype.cy = 200;
 Pickup.prototype.type = "Pickup";
 //render power_ups
 Pickup.prototype.render = function(ctx){
-  var rot = Math.PI / 2 * 3;
-  var x = this.cx;
-  var y = this.cy;
-  var step = Math.PI / 5;
-  ctx.strokeSyle = "black";
-  ctx.beginPath();
-  ctx.moveTo(this.cx, this.cy - 10)
-  for (var j = 0; j < 5; j++) {
-      x = this.cx + Math.cos(rot) * 10;
-      y = this.cy + Math.sin(rot) * 10;
-      ctx.lineTo(x, y)
-      rot += step
-      x = this.cx + Math.cos(rot) * 5;
-      y = this.cy + Math.sin(rot) * 5;
-      ctx.lineTo(x, y)
-      rot += step
-  }
-  ctx.lineTo(this.cx, this.cy - 10)
-  ctx.closePath();
-  ctx.lineWidth=5;
-  //if make paddle big gold star
-  ctx.strokeStyle='orange';
-  ctx.fillStyle='Gold';
-  ctx.stroke();
-  ctx.fill();
+
+  var origScale = this.sprite.scale;
+  // pass my scale into the sprite, for drawing
+  this.sprite.scale = this._scale;
+  this.sprite.drawWrappedCentredAt(
+ctx, this.cx, this.cy, this.rotation
+  );
+  this.sprite.scale = origScale;
 };
 //update  power ups
 Pickup.prototype.update = function(du){
@@ -47,9 +32,9 @@ Pickup.prototype.update = function(du){
   }
   var hitEntity = this.findHitEntity();
   if(hitEntity) {
-    console.log(hitEntity);
     var canTakePickup = hitEntity.takePickup;
     if(canTakePickup){
+      hitEntity.takePickup("helth");
       canTakePickup.call(hitEntity);
       return entityManager.KILL_ME_NOW;
     }
