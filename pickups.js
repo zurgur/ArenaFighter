@@ -10,9 +10,9 @@ Pickup.prototype = new Entity();
 Pickup.prototype.cx = 200;
 Pickup.prototype.cy = 200;
 
-Pickup.prototype = "Pickup";
+Pickup.prototype.type = "Pickup";
 //render power_ups
-Power.prototype.render = function(ctx){
+Pickup.prototype.render = function(ctx){
   var rot = Math.PI / 2 * 3;
   var x = this.cx;
   var y = this.cy;
@@ -20,7 +20,7 @@ Power.prototype.render = function(ctx){
   ctx.strokeSyle = "black";
   ctx.beginPath();
   ctx.moveTo(this.cx, this.cy - 10)
-  for (j = 0; j < 5; j++) {
+  for (var j = 0; j < 5; j++) {
       x = this.cx + Math.cos(rot) * 10;
       y = this.cy + Math.sin(rot) * 10;
       ctx.lineTo(x, y)

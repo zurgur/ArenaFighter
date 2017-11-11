@@ -73,6 +73,8 @@ function createInitialGrounds(cx,cy,w,h) {
 }
 function createInitialPickups(cx,cy){
   entityManager.generatePickups(new Pickup({
+    width : 2,
+    height : 2,
     cx : cx,
     cy : cy
   }));
@@ -202,7 +204,11 @@ function preloadDone() {
 
     entityManager.init();
     createInitialShips();
-    //createInitialPickups(210,550);
+    createInitialPickups(200,50);
+    createInitialPickups(1400,50);
+    createInitialPickups(800,500);
+    createInitialPickups(800,230);
+
     createInitialGrounds(200, 550, 200, 15);
     createInitialGrounds(1600-200, 550, 200, 15);
     createInitialGrounds(800, 650, 600, 15);
