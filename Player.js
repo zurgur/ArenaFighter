@@ -247,6 +247,7 @@ Player.prototype.maybeFireBullet = function () {
         var relVel = this.launchVel;
         var relVelX = dX * relVel;
         var relVelY = dY * relVel;
+        if(this._gunType === "pistol"){
         if(this.lastDirection==="right"){
           entityManager.fireBullet(
             this.cx + dX * launchDist +30, this.cy + dY * launchDist+40,
@@ -258,6 +259,11 @@ Player.prototype.maybeFireBullet = function () {
              -10,0,
              -1.5);
          }
+       }else if (this._gunType === "rocketLauncher") {
+         //TODO make roket
+       }else if (this._gunType === "shotgun") {
+         //TODO make shotgun
+       }
     }
 
 };
