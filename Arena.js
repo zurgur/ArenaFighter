@@ -196,7 +196,8 @@ function requestPreloads() {
         rock   : "sprites/rock.png",
         cake   : "sprites/cake.png",
         rocketLauncher : "sprites/rocketLauncher.png",
-        shotgun: "sprites/shotGun.png"
+        shotgun: "sprites/shotGun.png",
+        heart: "sprites/heart.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
