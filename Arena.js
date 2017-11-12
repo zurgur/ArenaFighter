@@ -187,10 +187,12 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        ship   : "sprites/playerSprite.png",
+        player   : "sprites/playerSprite.png",
         bullet : "sprites/BulletIcon.png",
         img    : "sprites/parallax.png",
-        ship2  : "sprites/player2Sprite.png",
+        player2  : "sprites/player2Sprite.png",
+        revPlayer2  : "sprites/player2Sprite.png",
+        revPlayer  : "sprites/player2Sprite.png",
         rock   : "sprites/rock.png",
         cake   : "sprites/cake.png",
         rocketLauncher : "sprites/rocketLauncher.png",
@@ -217,8 +219,8 @@ var g_sprites = {};
 function preloadDone() {
    g_sprites.back = new Background(g_images.img);
 
-    g_sprites.ship  = new Sprite(g_images.ship);
-    g_sprites.ship2 = new Sprite(g_images.ship2);
+    g_sprites.player  = new Sprite(g_images.player);
+    g_sprites.player2 = new Sprite(g_images.player2);
     g_sprites.rock  = new Sprite(g_images.rock);
     g_sprites.cake  = new Sprite(g_images.cake);
     g_sprites.rocketLauncher = new Sprite(g_images.rocketLauncher);

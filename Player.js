@@ -21,7 +21,7 @@ function Player(descr) {
     this.rememberResets();
 
     // Default sprite, if not otherwise specified
-    this.sprite = this.sprite || g_sprites.ship;
+    this.sprite = this.sprite || g_sprites.player;
 
     // Set normal drawing scale, and warp state off
     this._scale = 1;
@@ -57,7 +57,7 @@ Player.prototype.setKeys = function(i){
     this.KEY_RIGHT  = 'L'.charCodeAt(0);
     this.KEY_FIRE   = 'O'.charCodeAt(0);
     this.playerId = 2
-    this.sprite = g_sprites.ship2;
+    this.sprite = g_sprites.player2;
   }
 
 };
@@ -115,7 +115,7 @@ Player.prototype._moveToASafePlace = function () {
 };
 
 Player.prototype.update = function (du) {
-    var minY = g_sprites.ship.height / 2;
+    var minY = this.sprite.height / 2;
     var maxY = g_canvas.height - minY - 44;
 
     if (this.cy+1 < maxY && !spatialManager.groundCollision(this.cx, this.cy+1, this.width-10, this.height)){
@@ -216,7 +216,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
     // bounce
     if (g_useGravity) {
 
-	      var minY = g_sprites.ship.height / 2;
+	      var minY = this.sprite.height / 2;
 	      var maxY = g_canvas.height - minY - 44;
 
 	       // Ignore the bounce if the Player is already in
@@ -417,6 +417,10 @@ Player.prototype.render = function (ctx) {
     this.sprite.scale = this._scale;
     this.sprite.drawWrappedCentredAt(
 	ctx, this.cx, this.cy, this.rotation
+    );
+
+    g_sprites.shotgun.drawWrappedCentredAt(
+      ctx, this.cx, this.cy, this.rotation
     );
     this.sprite.scale = origScale;
 
