@@ -24,6 +24,9 @@ ctx, this.cx, this.cy, this.rotation
   );
   this.sprite.scale = origScale;
 };
+Pickup.prototype.getRadius = function (){
+  return(this.sprite.height/2) * 1.9;
+}
 //update  power ups
 Pickup.prototype.update = function(du){
   spatialManager.unregister(this);

@@ -50,7 +50,7 @@ function createInitialShips() {
   console.log("bý til spilara");
     entityManager.generatePlayer({
       cx : 200,
-      cy : 200
+      cy : 200,
     });
     entityManager.generatePlayer({
       cx : 1400,
