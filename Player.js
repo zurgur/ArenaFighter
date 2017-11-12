@@ -31,6 +31,7 @@ function Player(descr) {
     this.lastDirection = "right";
     this.savePos = [[200,200],[1400,200],[470,500]];
     this.playerId = 1;
+    this._gunType = "pistol";
 };
 
 Player.prototype = new Entity();
@@ -278,10 +279,13 @@ Player.prototype.takeBulletHit = function () {
 };
 
 Player.prototype.takePickup = function (type) {
-  console.log("hi I got I pikup");
   if(type === "helth"){
     this.life ++;
     console.log("now my helth is" + this.life);
+  }else if (type === "shotgun") {
+    this._gunType = "shotgun";
+  }else if (type === "rocketLauncher") {
+    this._gunType = "rocketLauncher";
   }
 
 }
