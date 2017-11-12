@@ -33,6 +33,8 @@ function Player(descr) {
     this.playerId = 1;
     this._gunType = "pistol";
     this.canFire = true;
+    this.gunSprite = g_sprites.shotgunrev;
+
 };
 
 Player.prototype = new Entity();
@@ -383,12 +385,26 @@ Player.prototype.updateRotation = function (du) {
     var rate = NOMINAL_MOVEMENT_RATE * du;
     if (keys[this.KEY_LEFT]) {
         this.lastDirection = "left";
+        this.gunSprite = g_sprites.shotgun;
+        if(this.playerId === 1){
+          this.sprite = g_sprites.playerrev;
+        }else {
+          this.sprite = g_sprites.player2rev;
+
+        }
         if (!spatialManager.groundCollision(this.cx-rate, this.cy, this.width, this.height)){
           this.cx -= NOMINAL_MOVEMENT_RATE * du;
         }
     }
     if (keys[this.KEY_RIGHT]){
       this.lastDirection = "right";
+      this.gunSprite = g_sprites.shotgunrev;
+
+      if(this.playerId === 1){
+        this.sprite = g_sprites.player;
+      }else {
+        this.sprite = g_sprites.player2;
+      }
       if (!spatialManager.groundCollision(this.cx+rate, this.cy, this.width, this.height)){
         this.cx += NOMINAL_MOVEMENT_RATE * du;
       }
@@ -419,8 +435,8 @@ Player.prototype.render = function (ctx) {
 	ctx, this.cx, this.cy, this.rotation
     );
 
-    g_sprites.shotgun.drawWrappedCentredAt(
-      ctx, this.cx, this.cy, this.rotation
+    this.gunSprite.drawWrappedCentredAt(
+      ctx, this.cx, this.cy+10, this.rotation
     );
     this.sprite.scale = origScale;
 

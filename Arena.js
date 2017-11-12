@@ -191,12 +191,13 @@ function requestPreloads() {
         bullet : "sprites/BulletIcon.png",
         img    : "sprites/parallax.png",
         player2  : "sprites/player2Sprite.png",
-        revPlayer2  : "sprites/player2Sprite.png",
-        revPlayer  : "sprites/player2Sprite.png",
+        revPlayer2  : "sprites/revPlayer2Sprite.png",
+        revPlayer  : "sprites/revPlayerSprite.png",
         rock   : "sprites/rock.png",
         cake   : "sprites/cake.png",
         rocketLauncher : "sprites/rocketLauncher.png",
         shotgun: "sprites/shotGun.png",
+        revShotgun: "sprites/revShotgun.png",
         heart: "sprites/heart.png"
     };
 
@@ -221,11 +222,13 @@ function preloadDone() {
 
     g_sprites.player  = new Sprite(g_images.player);
     g_sprites.player2 = new Sprite(g_images.player2);
+    g_sprites.playerrev = new Sprite(g_images.revPlayer);
+    g_sprites.player2rev = new Sprite(g_images.revPlayer2);
     g_sprites.rock  = new Sprite(g_images.rock);
     g_sprites.cake  = new Sprite(g_images.cake);
     g_sprites.rocketLauncher = new Sprite(g_images.rocketLauncher);
     g_sprites.shotgun = new Sprite(g_images.shotgun);
-
+    g_sprites.shotgunrev = new Sprite(g_images.revShotgun);
     g_sprites.bullet = new Sprite(g_images.bullet);
     g_sprites.bullet.scale = 0.25;
 
