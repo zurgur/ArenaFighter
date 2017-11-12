@@ -32,6 +32,7 @@ function Player(descr) {
     this.savePos = [[200,200],[1400,200],[470,500]];
     this.playerId = 1;
     this._gunType = "pistol";
+    this.canFire = true;
 };
 
 Player.prototype = new Entity();
@@ -236,35 +237,109 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
     this.cy += du * intervalVelY;
 };
 
+Player.prototype.firePistol = function () {
+  var dX = +Math.sin(this.rotation);
+  var dY = -Math.cos(this.rotation);
+  var launchDist = this.getRadius() * 1.2;
+
+  var relVel = this.launchVel;
+  var relVelX = dX * relVel;
+  var relVelY = dY * relVel;
+
+  if(this.lastDirection==="right"){
+    entityManager.fireBullet(
+      this.cx + dX * launchDist +30, this.cy + dY * launchDist+40,
+      10,0,
+      1.5);
+   }else{
+     entityManager.fireBullet(
+       this.cx + dX * launchDist -30, this.cy + dY * launchDist+40,
+       -10,0,
+       -1.5);
+   }
+}
+
+Player.prototype.fireShotgun = function () {
+  var dX = +Math.sin(this.rotation);
+  var dY = -Math.cos(this.rotation);
+  var launchDist = this.getRadius() * 1.2;
+
+  var relVel = this.launchVel;
+  var relVelX = dX * relVel;
+  var relVelY = dY * relVel;
+
+  if(this.lastDirection==="right"){
+
+    entityManager.fireBullet(
+      this.cx + dX * launchDist +30, this.cy + dY * launchDist+50,
+      10,0.5,
+      1.5);
+   entityManager.fireBullet(
+     this.cx + dX * launchDist +30, this.cy + dY * launchDist+40,
+     10,0,
+     1.5);
+   entityManager.fireBullet(
+     this.cx + dX * launchDist +30, this.cy + dY * launchDist+30,
+     10,-0.5,
+     1.5);
+   }else{
+     entityManager.fireBullet(
+       this.cx + dX * launchDist -30, this.cy + dY * launchDist+50,
+       -10,0.5,
+       -1.5);
+    entityManager.fireBullet(
+      this.cx + dX * launchDist -30, this.cy + dY * launchDist+40,
+      -10,0,
+      -1.5);
+    entityManager.fireBullet(
+      this.cx + dX * launchDist -30, this.cy + dY * launchDist+30,
+      -10,-0.5,
+      -1.5);
+    }
+  }
+
+
 Player.prototype.maybeFireBullet = function () {
 
-    if (keys[this.KEY_FIRE]) {
+    if (keys[this.KEY_FIRE] && this.canFire) {
 
-        var dX = +Math.sin(this.rotation);
-        var dY = -Math.cos(this.rotation);
-        var launchDist = this.getRadius() * 1.2;
+        this.canFire = false;
 
-        var relVel = this.launchVel;
-        var relVelX = dX * relVel;
-        var relVelY = dY * relVel;
         if(this._gunType === "pistol"){
-        if(this.lastDirection==="right"){
-          entityManager.fireBullet(
-            this.cx + dX * launchDist +30, this.cy + dY * launchDist+40,
-            10,0,
-            1.5);
-         }else{
-           entityManager.fireBullet(
-             this.cx + dX * launchDist -30, this.cy + dY * launchDist+40,
-             -10,0,
-             -1.5);
-         }
+
+          this.firePistol();
+
+          var self = this;
+          setTimeout(function () {
+            self.canFire = true;
+          }, 750);
+
        }else if (this._gunType === "rocketLauncher") {
-         //TODO make roket
+         var self = this;
+         var spray = 5;
+         function foo(){
+          if (spray > 0){
+            self.firePistol();
+            spray--;
+            setTimeout( foo, 150 );
+          }
+        }
+        foo();
+
+         setTimeout(function () {
+           self.canFire = true;
+         }, 750);
+
        }else if (this._gunType === "shotgun") {
-         //TODO make shotgun
+         this.fireShotgun();
+
+         var self = this;
+         setTimeout(function () {
+           self.canFire = true;
+         }, 1000);
        }
-    }
+     }
+
 
 };
 
@@ -293,6 +368,10 @@ Player.prototype.takePickup = function (type) {
   }else if (type === "rocketLauncher") {
     this._gunType = "rocketLauncher";
   }
+  var self = this;
+  setTimeout(function () {
+    self._gunType = "pistol";
+  }, 10000);
 
 }
 
