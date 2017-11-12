@@ -37,7 +37,14 @@ Pickup.prototype.update = function(du){
   if(hitEntity) {
     var canTakePickup = hitEntity.takePickup;
     if(canTakePickup){
-      hitEntity.takePickup("helth");
+      if(this.sprite === g_sprites.shotgun){
+        hitEntity.takePickup("shotgun");
+      }else if (this.sprite === g_sprites.rocketLauncher) {
+        hitEntity.takePickup("rocketLauncher");
+      }else {
+        hitEntity.takePickup("helth");
+      }
+
       canTakePickup.call(hitEntity);
       return entityManager.KILL_ME_NOW;
     }
