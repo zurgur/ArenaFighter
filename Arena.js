@@ -71,13 +71,22 @@ function createInitialGrounds(cx,cy,w,h) {
     cy : cy
   }));
 }
-function createInitialPickups(cx,cy){
-  entityManager.generatePickups(new Pickup({
-    width : 2,
-    height : 2,
-    cx : cx,
-    cy : cy
-  }));
+function createInitialPickups(cx,cy,sprite){
+  if(sprite){
+    entityManager.generatePickups(new Pickup({
+      cx : cx,
+      cy : cy,
+      sprite: sprite
+    }));
+  }else {
+    entityManager.generatePickups(new Pickup({
+      width : 2,
+      height : 2,
+      cx : cx,
+      cy : cy,
+    }));
+  }
+
 }
 
 
@@ -185,7 +194,9 @@ function requestPreloads() {
         img    : "sprites/parallax.png",
         ship2  : "sprites/player2Sprite.png",
         rock   : "sprites/rock.png",
-        cake   : "sprites/cake.png"
+        cake   : "sprites/cake.png",
+        rocketLauncher : "sprites/rocketLauncher.png",
+        shotgun: "sprites/shotGun.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -200,14 +211,16 @@ function preloadDone() {
     g_sprites.ship2 = new Sprite(g_images.ship2);
     g_sprites.rock  = new Sprite(g_images.rock);
     g_sprites.cake  = new Sprite(g_images.cake);
+    g_sprites.rocketLauncher = new Sprite(g_images.rocketLauncher);
+    g_sprites.shotgun = new Sprite(g_images.shotgun);
 
     g_sprites.bullet = new Sprite(g_images.bullet);
     g_sprites.bullet.scale = 0.25;
 
     entityManager.init();
     createInitialShips();
-    createInitialPickups(200,50);
-    createInitialPickups(1400,50);
+    createInitialPickups(200,50,g_sprites.rocketLauncher);
+    createInitialPickups(1400,50,g_sprites.shotgun);
     createInitialPickups(800,500);
     createInitialPickups(800,228);
 
