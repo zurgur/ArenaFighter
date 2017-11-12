@@ -302,17 +302,12 @@ Player.prototype.fireShotgun = function () {
 Player.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE] && this.canFire) {
-
+        console.log(this.canFire);
         this.canFire = false;
 
         if(this._gunType === "pistol"){
 
           this.firePistol();
-
-          var self = this;
-          setTimeout(function () {
-            self.canFire = true;
-          }, 750);
 
        }else if (this._gunType === "rocketLauncher") {
          var self = this;
@@ -321,23 +316,18 @@ Player.prototype.maybeFireBullet = function () {
           if (spray > 0){
             self.firePistol();
             spray--;
-            setTimeout( foo, 150 );
+            setTimeout( foo, 100 );
           }
         }
         foo();
 
-         setTimeout(function () {
-           self.canFire = true;
-         }, 750);
-
        }else if (this._gunType === "shotgun") {
          this.fireShotgun();
-
-         var self = this;
-         setTimeout(function () {
-           self.canFire = true;
-         }, 1000);
        }
+       var self = this;
+       setTimeout(function () {
+         self.canFire = true;
+       }, 1000);
      }
 
 
