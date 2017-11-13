@@ -191,13 +191,13 @@ function requestPreloads() {
         bullet : "sprites/BulletIcon.png",
         img    : "sprites/parallax.png",
         player2  : "sprites/player2Sprite.png",
-        revPlayer2  : "sprites/revPlayer2Sprite.png",
-        revPlayer  : "sprites/revPlayerSprite.png",
+        revPlayer2  : "sprites/revplayer2Sprite.png",
+        revPlayer  : "sprites/revplayerSprite.png",
         rock   : "sprites/rock.png",
         cake   : "sprites/cake.png",
         rocketLauncher : "sprites/rocketLauncher.png",
-        shotgun: "sprites/shotGun.png",
-        revShotgun: "sprites/revShotgun.png",
+        shotgun: "sprites/ShotGun.png",
+        revShotgun: "sprites/revShotGun.png",
         heart: "sprites/heart.png"
     };
 
