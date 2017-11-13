@@ -76,45 +76,7 @@ Player.prototype.numSubSteps = 1;
 Player.prototype.height = 62;
 Player.prototype.width = 40;
 Player.prototype.type = "Player";
-/*
-// HACKED-IN AUDIO (no preloading)
-Player.prototype.warpSound = new Audio(
-    "sounds/ShipWarp.ogg");
-*/
 
-
-Player.prototype._moveToASafePlace = function () {
-
-    // Move to a safe place some suitable distance away
-    var origX = this.cx,
-        origY = this.cy,
-        MARGIN = 40,
-        isSafePlace = false;
-
-    for (var attempts = 0; attempts < 100; ++attempts) {
-
-        var warpDistance = 100 + Math.random() * g_canvas.width /2;
-        var warpDirn = Math.random() * consts.FULL_CIRCLE;
-
-        this.cx = origX + warpDistance * Math.sin(warpDirn);
-        this.cy = origY - warpDistance * Math.cos(warpDirn);
-
-        this.wrapPosition();
-
-        // Don't go too near the edges, and don't move into a collision!
-        if (!util.isBetween(this.cx, MARGIN, g_canvas.width - MARGIN)) {
-            isSafePlace = false;
-        } else if (!util.isBetween(this.cy, MARGIN, g_canvas.height - MARGIN)) {
-            isSafePlace = false;
-        } else {
-            isSafePlace = !this.isColliding();
-        }
-
-        // Get out as soon as we find a safe place
-        if (isSafePlace) break;
-
-    }
-};
 
 Player.prototype.update = function (du) {
     var minY = this.sprite.height / 2;
