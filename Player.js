@@ -76,6 +76,12 @@ Player.prototype.numSubSteps = 1;
 Player.prototype.height = 62;
 Player.prototype.width = 40;
 Player.prototype.type = "Player";
+/*
+// HACKED-IN AUDIO (no preloading)
+Player.prototype.warpSound = new Audio(
+    "sounds/ShipWarp.ogg");
+*/
+
 
 
 Player.prototype.update = function (du) {

@@ -10,7 +10,9 @@ Exposion.prototype = new Entity();
 Exposion.prototype.radius = 1;
 
 Exposion.prototype.render = function (ctx) {
-
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = this.radius/2;
+  util.strokeCircle(ctx, this.cx, this.cy, this.radius);
 };
 
 Exposion.prototype.update = function(du){
