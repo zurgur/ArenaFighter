@@ -10,7 +10,7 @@ Ground.prototype.type = "Ground";
 //draw the bricks
 Ground.prototype.render = function(ctx){
   ctx.beginPath();
-  ctx.rect(this.cx, this.cy, this.width, this.height);
+  ctx.rect(this.cx, this.cy-this.height/2, this.width, this.height);
   ctx.fillStyle = "#663300";
   ctx.fill();
   ctx.closePath();
@@ -25,13 +25,20 @@ Ground.prototype.update = function (du) {
 Ground.prototype.collidesWithGround = function(posX,posY,width,height){
   var halfWidth = width/2;
   var halfHeight = height/2;
-  if (posY + halfHeight > this.cy
+  if (posY + halfHeight > this.cy - this.height/2
       && posX - halfWidth < this.cx + this.width
       && posX + halfWidth > this.cx
-      && posY - halfHeight < this.cy + this.height
+      && posY - halfHeight < this.cy + this.height/2
       ){
         return true;
       } else {
         return false;
       }
 };
+
+Ground.prototype.getRadius = function() {
+  return this.height/2;
+};
+Ground.prototype.getWidth = function () {
+  return this.width;
+}

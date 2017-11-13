@@ -67,27 +67,41 @@ findEntityInRange: function(posX, posY, radius) {
   for (let i = 0; i < this._entities.length; i++) {
 		let ent = this._entities[i];
 		if (ent) {
-			let pos = ent.getPos();
+      let pos = ent.getPos();
       var rad = ent.getRadius();
-			let dist = util.distSq(posX,posY,pos.posX,pos.posY);
-      var limitSq = util.square(radius + rad);
-			if (dist <= limitSq) {
-				return ent;
-			}
+      if(ent.type === "Ground"){
+        var circleDistancex = Math.abs(posX - pos.posX-ent.getWidth/2);
+        var circleDistancey = Math.abs(posY - pos.posY-rad);
+        if (circleDistancex <= (ent.getWidth/2)) { return ent; }
+        if (circleDistancey <= rad) { return ent; }
+      }else {
+        let dist = util.distSq(posX,posY,pos.posX,pos.posY);
+        var limitSq = util.square(radius + rad);
+        if (dist <= limitSq) {
+          return ent;
+        }
+      }
+
 		}
 	}
 },
 
 render: function(ctx) {
   ctx.save()
-  
+
     var oldStyle = ctx.strokeStyle;
     ctx.strokeStyle = "red";
 
     for (var ID in this._entities) {
         var e = this._entities[ID];
         var pos = e.getPos();
-        util.strokeCircle(ctx, pos.posX, pos.posY, e.getRadius());
+        if(e.type != "Ground"){
+            util.strokeCircle(ctx, pos.posX, pos.posY, e.getRadius());
+        }else {
+          //ctx, x, y, w, h, style
+          util.fillBox(ctx, pos.posX, pos.posY-e.getRadius(),e.getWidth(),e.getRadius()*2);
+        }
+
     }
     ctx.strokeStyle = oldStyle;
 },

@@ -312,7 +312,7 @@ Player.prototype.maybeFireBullet = function () {
           this.firePistol();
 
        }else if (this._gunType === "rocketLauncher") {
-         var self = this;
+         /*var self = this;
          var spray = 5;
          function foo(){
           if (spray > 0){
@@ -321,7 +321,18 @@ Player.prototype.maybeFireBullet = function () {
             setTimeout( foo, 100 );
           }
         }
-        foo();
+        foo();*/
+        var dX = +Math.sin(this.rotation);
+        var dY = -Math.cos(this.rotation);
+        var launchDist = this.getRadius() * 1.2;
+
+        var relVel = this.launchVel;
+        var relVelX = dX * relVel;
+        var relVelY = dY * relVel;
+        entityManager.fireRocket(
+          this.cx + dX * launchDist -30, this.cy + dY * launchDist+30,
+          -10,-0.5,
+          -1.5);
 
        }else if (this._gunType === "shotgun") {
          this.fireShotgun();

@@ -26,6 +26,7 @@ _bullets : [],
 _playerId : 1,
 _grounds : [],
 _pickups : [],
+_rockets : [],
 // "PRIVATE" METHODS
 
 _generatePlayers : function() {
@@ -55,7 +56,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._players, this._bullets, this._grounds,this._pickups];
+    this._categories = [this._players, this._bullets, this._grounds,this._pickups,this._rockets];
 },
 
 destroyPlayers : function () {
@@ -70,6 +71,16 @@ init: function() {
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
     this._bullets.push(new Bullet({
+        cx   : cx,
+        cy   : cy,
+        velX : velX,
+        velY : velY,
+
+        rotation : rotation
+    }));
+},
+fireRocket: function(cx, cy, velX, velY, rotation) {
+    this._rockets.push(new Rocket({
         cx   : cx,
         cy   : cy,
         velX : velX,
