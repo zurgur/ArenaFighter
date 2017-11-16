@@ -25,7 +25,6 @@ Background.prototype.drawBackrond = function (ctx,du) {
  var vx = 100; // the background scrolls with a speed of 100 pixels/sec
  var numImages = Math.ceil(g_canvas.width / this.width) + 1;
  var xpos = this.totalSeconds * this.speed % this.width;
- //console.log(xpos,numImages);
  ctx.save();
  ctx.translate(-xpos, 0);
  ctx.rect(20,20,150,100);

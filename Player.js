@@ -29,7 +29,8 @@ function Player(descr) {
     this.hanging = false;
     this.life = 5;
     this.lastDirection = "right";
-    this.savePos = [[200,200],[1400,200],[470,500]];
+    this.savePos = [[200,200],[1400,200],[470,500],[1000,600],[1000,1000]];
+    this._index = 20;
     this.playerId = 1;
     this._gunType = "pistol";
     this.canFire = true;
@@ -272,7 +273,6 @@ Player.prototype.fireShotgun = function () {
 Player.prototype.maybeFireBullet = function () {
 
     if (keys[this.KEY_FIRE] && this.canFire) {
-        console.log(this.canFire);
         this.canFire = false;
 
         if(this._gunType === "pistol"){
@@ -319,13 +319,12 @@ Player.prototype.getRadius = function () {
 };
 
 Player.prototype.takeBulletHit = function () {
-    var rand = Math.floor(Math.random()*3);
+    var rand = Math.floor(Math.random()*5);
+    this._index = rand;
     this.cx = this.savePos[rand][0];
     this.cy = this.savePos[rand][1];
     this.life--;
-    console.log(this.life);
     if(this.life === 0){
-      console.log("dead");
       this._isDeadNow = true;
     }
 };
@@ -333,7 +332,6 @@ Player.prototype.takeBulletHit = function () {
 Player.prototype.takePickup = function (type) {
   if(type === "helth"){
     this.life ++;
-    console.log("now my helth is" + this.life);
   }else if (type === "shotgun") {
     this._gunType = "shotgun";
   }else if (type === "rocketLauncher") {
