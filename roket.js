@@ -76,6 +76,6 @@ Rocket.prototype.render = function (ctx) {
     this.sprite.drawWrappedCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );
-
+    this.sprite.scale = origScale;
     ctx.globalAlpha = 1;
 };
