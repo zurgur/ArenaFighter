@@ -297,11 +297,17 @@ Player.prototype.maybeFireBullet = function () {
         var relVel = this.launchVel;
         var relVelX = dX * relVel;
         var relVelY = dY * relVel;
+        if(this.lastDirection=== "right"){
+          entityManager.fireRocket(
+            this.cx + dX * launchDist +30, this.cy + dY * launchDist+30,
+            10,-0.5,
+            1.5);
+        }else{
         entityManager.fireRocket(
           this.cx + dX * launchDist -30, this.cy + dY * launchDist+30,
           -10,-0.5,
           -1.5);
-
+        }
        }else if (this._gunType === "shotgun") {
          this.fireShotgun();
        }
