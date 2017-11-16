@@ -218,7 +218,7 @@ var g_sprites = {};
 
 function preloadDone() {
    g_sprites.back = new Background(g_images.img);
-
+   g_sprites.heart = new Sprite(g_images.heart);
     g_sprites.player  = new Sprite(g_images.player);
     g_sprites.player2 = new Sprite(g_images.player2);
     g_sprites.playerrev = new Sprite(g_images.revPlayer);

@@ -396,16 +396,16 @@ Player.prototype.updateRotation = function (du) {
 
 Player.prototype.drawHealth = function (ctx){
   if (this.playerId === 1){
-    var x = 20;
+    var x = 60;
     for (var i = 0; i < this.life; i++){
-        ctx.drawImage(g_images.heart, x, 753);
-        x += 60;
+      g_sprites.heart.drawWrappedCentredAt(ctx,x, 753);
+      x += 60;
     }
   } else {
       var x = 1530;
       for (var i = 0; i < this.life; i++){
-          ctx.drawImage(g_images.heart, x, 753);
-          x -= 60;
+        g_sprites.heart.drawWrappedCentredAt(ctx,x, 753);
+        x -= 60;
     }
   }
 };
@@ -422,7 +422,4 @@ Player.prototype.render = function (ctx) {
       ctx, this.cx, this.cy+10, this.rotation
     );
     this.sprite.scale = origScale;
-
-    this.drawHealth(ctx);
-
 };
