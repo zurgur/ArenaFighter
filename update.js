@@ -72,7 +72,22 @@ function shouldSkipUpdate() {
         g_isUpdatePaused = !g_isUpdatePaused;
         canvas.height = 0;
         winCanvas.height = 0;
+        intervals()
         console.log("start");
     }
     return g_isUpdatePaused;
+}
+function intervals(){
+  window.setInterval(function(){
+      var Ypos = [500, 228];
+      createInitialPickups(800, Ypos[Math.round(Math.random())]);
+  }, 20000);
+
+  window.setInterval(function(){
+    var Xpos = [600, 800, 1000];
+    var Ypos = [50, 160, 300, 400, 700];
+    var type = [g_sprites.shotgun, g_sprites.rocketLauncher];
+    createInitialPickups(Xpos[Math.floor(Math.random() * 2)], Ypos[Math.floor(Math.random() * 4)], type[Math.round(Math.random())]);
+  }, 15000);
+
 }
