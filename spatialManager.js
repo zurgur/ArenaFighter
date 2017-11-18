@@ -70,10 +70,7 @@ findEntityInRange: function(posX, posY, radius) {
       let pos = ent.getPos();
       var rad = ent.getRadius();
       if(ent.type === "Ground"){
-        var circleDistancex = Math.abs(posX - pos.posX-ent.getWidth/2);
-        var circleDistancey = Math.abs(posY - pos.posY-rad);
-        if (circleDistancex <= (ent.getWidth/2)) { return ent; }
-        if (circleDistancey <= rad) { return ent; }
+        if (ent.collidesWithGround(posX,posY,radius,radius)) return ent;
       }else {
         let dist = util.distSq(posX,posY,pos.posX,pos.posY);
         var limitSq = util.square(radius + rad);

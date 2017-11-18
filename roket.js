@@ -39,21 +39,12 @@ Rocket.prototype.update = function (du) {
   var hitEntity = this.findHitEntity();
   if (hitEntity) {
       var canTakeHit = hitEntity.takeBulletHit;
-      if (canTakeHit){
-        canTakeHit.call(hitEntity);
+      if (canTakeHit) canTakeHit.call(hitEntity);
         entityManager.generateExposion(new Exposion({
           cx : this.cx,
           cy : this.cy,
         }));
         return entityManager.KILL_ME_NOW;
-      }
-  }else if (spatialManager.groundCollision(this.cx,this.cy,10,10)) {
-    console.log("hit ground");
-    entityManager.generateExposion(new Exposion({
-      cx : this.cx,
-      cy : this.cy,
-    }));
-    return entityManager.KILL_ME_NOW;
 
   }
   spatialManager.register(this);
