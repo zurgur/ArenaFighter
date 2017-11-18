@@ -4,9 +4,14 @@
 function Exposion(descr) {
   this.setup(descr);
   this.sprite = this.sprite || g_sprites.cake;
+  this.sound.play();
 };
 
 Exposion.prototype = new Entity();
+//HACKED in AUDIO
+Exposion.prototype.sound = new Audio(
+  "sounds/Explosion Sound.wav"
+);
 Exposion.prototype.radius = 1;
 
 Exposion.prototype.render = function (ctx) {

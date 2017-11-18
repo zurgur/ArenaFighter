@@ -5,8 +5,15 @@ function Rocket(descr) {
    this.setup(descr);
    this.sprite = this.sprite || g_sprites.bullet;
    this.radius = 0.5;
+
+   this.fireSound.play();
 }
 Rocket.prototype = new Entity();
+
+//Hacked in audio
+Rocket.prototype.fireSound = new Audio(
+  "sounds/Grenade Launcher Sound Effect 1.wav"
+);
 
 // Initial, inheritable, default values
 Rocket.prototype.rotation = 0;
