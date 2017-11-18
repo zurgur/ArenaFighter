@@ -32,7 +32,7 @@ function Player(descr) {
     this.savePos = [[200,200],[1400,200],[470,500],[1000,600],[1000,1000]];
     this._index = 20;
     this.playerId = 1;
-    this._gunType = "rocketLauncher";
+    this._gunType = "pistol";
     this.canFire = true;
     this.gunSprite = g_sprites.shotgunrev;
 
