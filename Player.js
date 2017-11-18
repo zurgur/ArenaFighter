@@ -40,6 +40,10 @@ function Player(descr) {
 
 Player.prototype = new Entity();
 
+Player.prototype.jumpSound = new Audio(
+  "sounds/Mario_Jumping.wav"
+);
+
 Player.prototype.rememberResets = function () {
     // Remember my reset positions
     this.reset_cx = this.cx;
@@ -153,6 +157,7 @@ Player.prototype.computeThrustMag = function () {
     var thrust = 0;
     if ((keys[this.KEY_THRUST]) && this.jump){
         this.jump = false;
+        this.jumpSound.play();
         thrust += NOMINAL_JUMP;
     } else if ((keys[this.KEY_THRUST]) && this.hanging) {
 
