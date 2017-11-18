@@ -22,8 +22,8 @@ Rocket.prototype.update = function (du) {
   if (this._isDeadNow) {
     return entityManager.KILL_ME_NOW;
   }
-  this.lifeSpan -= du;
-  if (this.lifeSpan < 0) return entityManager.KILL_ME_NOW;
+  //this.lifeSpan -= du;
+  //if (this.lifeSpan < 0) return entityManager.KILL_ME_NOW;
 
   this.cx += this.velX * du;
   this.cy += this.velY * du;
@@ -39,16 +39,24 @@ Rocket.prototype.update = function (du) {
   var hitEntity = this.findHitEntity();
   if (hitEntity) {
       var canTakeHit = hitEntity.takeBulletHit;
-      if (canTakeHit) canTakeHit.call(hitEntity);
-      entityManager.generateExposion(new Exposion({
-        cx : this.cx,
-        cy : this.cy,
-      }));
-      return entityManager.KILL_ME_NOW;
+      if (canTakeHit){
+        canTakeHit.call(hitEntity);
+        entityManager.generateExposion(new Exposion({
+          cx : this.cx,
+          cy : this.cy,
+        }));
+        return entityManager.KILL_ME_NOW;
+      }
+  }else if (spatialManager.groundCollision(this.cx,this.cy,10,10)) {
+    console.log("hit ground");
+    entityManager.generateExposion(new Exposion({
+      cx : this.cx,
+      cy : this.cy,
+    }));
+    return entityManager.KILL_ME_NOW;
+
   }
-
   spatialManager.register(this);
-
 };
 
 Rocket.prototype.getRadius = function () {
