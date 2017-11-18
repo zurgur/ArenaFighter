@@ -186,6 +186,7 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
+        StartScreen: "sprites/StartScreen.png",
         player   : "sprites/playerSprite.png",
         bullet : "sprites/BulletIcon.png",
         img    : "sprites/parallax.png",
@@ -207,8 +208,9 @@ function requestPreloads() {
 var g_sprites = {};
 
 function preloadDone() {
-   g_sprites.back = new Background(g_images.img);
-   g_sprites.heart = new Sprite(g_images.heart);
+    g_sprites.back = new Background(g_images.img);
+    g_sprites.StartScreen = new Sprite(g_images.StartScreen);
+    g_sprites.heart = new Sprite(g_images.heart);
     g_sprites.player  = new Sprite(g_images.player);
     g_sprites.player2 = new Sprite(g_images.player2);
     g_sprites.playerrev = new Sprite(g_images.revPlayer);
@@ -220,7 +222,9 @@ function preloadDone() {
     g_sprites.shotgunrev = new Sprite(g_images.revShotgun);
     g_sprites.bullet = new Sprite(g_images.bullet);
     g_sprites.bullet.scale = 0.25;
-
+    g_sprites.StartScreen.drawWrappedCentredAt(
+    context, 801, 400, 0
+    );
     entityManager.init();
     createInitialShips();
 
