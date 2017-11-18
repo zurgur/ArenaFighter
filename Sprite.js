@@ -65,6 +65,8 @@ Sprite.prototype.drawWrappedCentredAt = function (ctx, cx, cy, rotation) {
 };
 Sprite.prototype.drawFrameAt = function (ctx,cx,cy,rotation,row,colum) {
   if (rotation === undefined) rotation = 0;
+  if (row === undefined) row = 0;
+  if (colum === undefined) colum = 0;
 
   var w = this.width,
       h = this.height;
@@ -77,7 +79,7 @@ Sprite.prototype.drawFrameAt = function (ctx,cx,cy,rotation,row,colum) {
   // drawImage expects "top-left" coords, so we offset our destination
   // coords accordingly, to draw our sprite centred at the origin
   try{
-    ctx.drawImage(this.image,0,0,this.width/5,this.height/3,
+    ctx.drawImage(this.image,(this.width/2.5)*row,(this.height/1.5)*colum,this.width/5,this.height/3,
                   -w/8, -h/6,this.width/5,this.height/3);
 
   }

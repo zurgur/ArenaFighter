@@ -426,7 +426,7 @@ Player.prototype.render = function (ctx) {
       ctx.translate(-this.cx,-this.cy);
     }
     this.sprite.drawFrameAt(
-	ctx, this.cx, this.cy, this.rotation
+	ctx, this.cx, this.cy, this.rotation,0.5,0.5
     );
 
     this.gunSprite.drawWrappedCentredAt(
