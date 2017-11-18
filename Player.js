@@ -326,7 +326,7 @@ Player.prototype.maybeFireBullet = function () {
 };
 
 Player.prototype.getRadius = function () {
-    return (this.sprite.height / 2) * 0.9;
+    return (this.sprite.height / 5) * 0.9;
 };
 
 Player.prototype.takeBulletHit = function () {
