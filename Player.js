@@ -35,6 +35,7 @@ function Player(descr) {
     this._gunType = "pistol";
     this.canFire = true;
     this.gunSprite = g_sprites.shotgunrev;
+    this.animations = 0;
 
 };
 
@@ -397,6 +398,7 @@ Player.prototype.updateRotation = function (du) {
         this.cx += NOMINAL_MOVEMENT_RATE * du;
       }
     }
+    this.animations = (this.animations + 1)
 };
 
 Player.prototype.drawHealth = function (ctx){
@@ -426,7 +428,7 @@ Player.prototype.render = function (ctx) {
       ctx.translate(-this.cx,-this.cy);
     }
     this.sprite.drawFrameAt(
-	ctx, this.cx, this.cy, this.rotation,0.5,0.5
+	ctx, this.cx, this.cy, this.rotation,0,this.animations
     );
 
     this.gunSprite.drawWrappedCentredAt(
