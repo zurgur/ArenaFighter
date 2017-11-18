@@ -419,12 +419,19 @@ Player.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
     this.sprite.scale = this._scale;
-    this.sprite.drawWrappedCentredAt(
+    ctx.save()
+    if (this.hanging){
+      ctx.translate(this.cx,this.cy);
+      ctx.scale(1,-1);
+      ctx.translate(-this.cx,-this.cy);
+    }
+    this.sprite.drawFrameAt(
 	ctx, this.cx, this.cy, this.rotation
     );
 
     this.gunSprite.drawWrappedCentredAt(
       ctx, this.cx, this.cy+10, this.rotation
     );
+    ctx.restore();
     this.sprite.scale = origScale;
 };
