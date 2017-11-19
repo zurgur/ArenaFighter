@@ -19,9 +19,7 @@ var g_isUpdateOdd = false;
 
 var g_playMusic = false;
 
-
 var KEY_MUTE = 'M'.charCodeAt(0);
-
 
 function update(dt) {
 
@@ -30,9 +28,9 @@ function update(dt) {
     if (shouldSkipUpdate()) return;
     if(eatKey(KEY_MUTE)){
       g_playMusic=!g_playMusic;
-      soundtrack.pause();
+      if (g_playMusic) soundtrack.volume = 0;
+      else soundtrack.volume = 0.4;
       //soundtrack.currentTime = 0;
-      console.log("hu?");
     }
 
     // Remember this for later
