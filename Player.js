@@ -93,8 +93,7 @@ Player.prototype.warpSound = new Audio(
 
 Player.prototype.update = function (du) {
     var minY = this.sprite.height / 2;
-    var maxY = g_canvas.height - minY - 44;
-
+    var maxY = g_canvas.height - minY;
     if (this.cy+1 < maxY && !spatialManager.groundCollision(this.cx, this.cy+1, this.width-10, this.height)){
       this.jump = false;
     } else {
@@ -194,8 +193,8 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
     // bounce
     if (g_useGravity) {
 
-	      var minY = this.sprite.height / 2;
-	      var maxY = g_canvas.height - minY - 44;
+	      var minY = this.sprite.height / 2 - 54;
+	      var maxY = g_canvas.height - minY - 43;
 
 	       // Ignore the bounce if the Player is already in
 	        // the "border zone" (to avoid trapping them there)
