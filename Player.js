@@ -35,6 +35,7 @@ function Player(descr) {
     this._gunType = "pistol";
     this.canFire = true;
     this.gunSprite = g_sprites.shotgunrev;
+    this.counter = 0;
     this.animations = 0;
 
 };
@@ -374,6 +375,8 @@ Player.prototype.updateRotation = function (du) {
     var rate = NOMINAL_MOVEMENT_RATE * du;
     if (keys[this.KEY_LEFT]) {
         this.lastDirection = "left";
+        this.counter ++;
+        this.animations = Math.floor((this.counter)/10 * du);
         this.gunSprite = g_sprites.shotgun;
         if(this.playerId === 1){
           this.sprite = g_sprites.playerrev;
@@ -388,6 +391,8 @@ Player.prototype.updateRotation = function (du) {
     if (keys[this.KEY_RIGHT]){
       this.lastDirection = "right";
       this.gunSprite = g_sprites.shotgunrev;
+      this.counter ++;
+      this.animations = Math.floor((this.counter)/10 * du);
 
       if(this.playerId === 1){
         this.sprite = g_sprites.player;
@@ -398,7 +403,6 @@ Player.prototype.updateRotation = function (du) {
         this.cx += NOMINAL_MOVEMENT_RATE * du;
       }
     }
-    this.animations = (this.animations + 1)
 };
 
 Player.prototype.drawHealth = function (ctx){
