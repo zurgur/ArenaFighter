@@ -223,12 +223,12 @@ Player.prototype.firePistol = function () {
 
   if(this.lastDirection==="right"){
     entityManager.fireBullet(
-      this.cx + dX * launchDist +30, this.cy + dY * launchDist+40,
+      this.cx + dX * launchDist +40, this.cy + dY * launchDist+40,
       10,0,
       1.5);
    }else{
      entityManager.fireBullet(
-       this.cx + dX * launchDist -30, this.cy + dY * launchDist+40,
+       this.cx + dX * launchDist -40, this.cy + dY * launchDist+40,
        -10,0,
        -1.5);
    }
@@ -246,28 +246,28 @@ Player.prototype.fireShotgun = function () {
   if(this.lastDirection==="right"){
 
     entityManager.fireBullet(
-      this.cx + dX * launchDist +30, this.cy + dY * launchDist+50,
+      this.cx + dX * launchDist +40, this.cy + dY * launchDist+50,
       10,0.2,
       1.5);
    entityManager.fireBullet(
-     this.cx + dX * launchDist +30, this.cy + dY * launchDist+40,
+     this.cx + dX * launchDist +40, this.cy + dY * launchDist+40,
      10,0,
      1.5);
    entityManager.fireBullet(
-     this.cx + dX * launchDist +30, this.cy + dY * launchDist+30,
+     this.cx + dX * launchDist +40, this.cy + dY * launchDist+30,
      10,-0.2,
      1.5);
    }else{
      entityManager.fireBullet(
-       this.cx + dX * launchDist -30, this.cy + dY * launchDist+50,
+       this.cx + dX * launchDist -40, this.cy + dY * launchDist+50,
        -10,0.2,
        -1.5);
     entityManager.fireBullet(
-      this.cx + dX * launchDist -30, this.cy + dY * launchDist+40,
+      this.cx + dX * launchDist -40, this.cy + dY * launchDist+40,
       -10,0,
       -1.5);
     entityManager.fireBullet(
-      this.cx + dX * launchDist -30, this.cy + dY * launchDist+30,
+      this.cx + dX * launchDist -40, this.cy + dY * launchDist+30,
       -10,-0.2,
       -1.5);
     }

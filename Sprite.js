@@ -82,8 +82,8 @@ Sprite.prototype.drawFrameAt = function (ctx,cx,cy,rotation,row,colum) {
   // drawImage expects "top-left" coords, so we offset our destination
   // coords accordingly, to draw our sprite centred at the origin
   try{
-    ctx.drawImage(this.image,walkingmod*frameWidth,frameHeigth,frameWidth,
-      frameHeigth,-w/8, -h/6,frameWidth,frameHeigth);
+    ctx.drawImage(this.image,walkingmod*frameWidth,frameHeigth*0.5,frameWidth,
+      frameHeigth/2,-w/8, -h/6,frameWidth,frameHeigth*0.5);
 
   }
   catch(err) {
