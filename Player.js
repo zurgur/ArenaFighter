@@ -344,10 +344,13 @@ Player.prototype.takeBulletHit = function () {
 Player.prototype.takePickup = function (type) {
   if(type === "helth"){
     this.life ++;
+    spawnHealth = true;
   }else if (type === "shotgun") {
     this._gunType = "shotgun";
+    spawnWeapon = true;
   }else if (type === "rocketLauncher") {
     this._gunType = "rocketLauncher";
+    spawnWeapon = true;
   }
   var self = this;
   setTimeout(function () {
