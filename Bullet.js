@@ -18,9 +18,6 @@ function Bullet(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 
-    // Make a noise when I am created (i.e. fired)
-    this.fireSound.play();
-
 /*
     // Diagnostics to check inheritance stuff
     this._bulletProperty = true;
@@ -32,8 +29,6 @@ function Bullet(descr) {
 Bullet.prototype = new Entity();
 
 // HACKED-IN AUDIO (no preloading)
-Bullet.prototype.fireSound = new Audio(
-    "sounds/bulletFire.wav");
 Bullet.prototype.zappedSound = new Audio(
     "sounds/bulletZapped.ogg");
 
@@ -46,7 +41,7 @@ Bullet.prototype.velY = 1;
 Bullet.prototype.type = "Bullet";
 
 // Convert times from milliseconds to "nominal" time units.
-Bullet.prototype.lifeSpan = 3000 / NOMINAL_UPDATE_INTERVAL;
+Bullet.prototype.lifeSpan = 2300 / NOMINAL_UPDATE_INTERVAL;
 
 Bullet.prototype.update = function (du) {
 

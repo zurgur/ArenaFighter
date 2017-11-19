@@ -277,6 +277,7 @@ function preloadDone() {
     createInitialGrounds(800, 80, 20, 15);
     createInitialGrounds(1400, 80, 20, 15);
 
+    createInitialGrounds(800, 790, 1600, 100);
 
     main.init();
 }

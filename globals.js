@@ -21,3 +21,31 @@ var NOMINAL_UPDATE_INTERVAL = 16.666;
 
 // Multiply by this to convert seconds into "nominals"
 var SECS_TO_NOMINALS = 1000 / NOMINAL_UPDATE_INTERVAL;
+
+var jumpSound = new Audio(
+  "sounds/Mario_Jumping.wav"
+);
+
+var shotgunPickupSound = new Audio(
+  "sounds/reload.wav"
+);
+
+var shotgunSound = new Audio(
+  "sounds/shotgun.wav"
+);
+
+var pistolSound = new Audio(
+    "sounds/bulletFire.wav"
+  );
+
+var rocketPickupSound = new Audio(
+    "sounds/rocketPickup.wav"
+  );
+
+var healthPickupSound = new Audio(
+  "sounds/healthPickup.wav"
+);
+
+var deathSound = new Audio (
+  "sounds/death.wav"
+);

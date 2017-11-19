@@ -42,10 +42,6 @@ function Player(descr) {
 
 Player.prototype = new Entity();
 
-Player.prototype.jumpSound = new Audio(
-  "sounds/Mario_Jumping.wav"
-);
-
 Player.prototype.rememberResets = function () {
     // Remember my reset positions
     this.reset_cx = this.cx;
@@ -59,12 +55,14 @@ Player.prototype.setKeys = function(i){
     this.KEY_LEFT   = 'A'.charCodeAt(0);
     this.KEY_RIGHT  = 'D'.charCodeAt(0);
     this.KEY_FIRE   = 'E'.charCodeAt(0);
+    this.KEY_ALTFIRE = 'Q'.charCodeAt(0);
   }else{
     this.KEY_THRUST = 'I'.charCodeAt(0);
     this.KEY_RETRO  = 'K'.charCodeAt(0);
     this.KEY_LEFT   = 'J'.charCodeAt(0);
     this.KEY_RIGHT  = 'L'.charCodeAt(0);
     this.KEY_FIRE   = 'O'.charCodeAt(0);
+    this.KEY_ALTFIRE = 'U'.charCodeAt(0);
     this.playerId = 2
     this.sprite = g_sprites.player2;
   }
@@ -158,7 +156,7 @@ Player.prototype.computeThrustMag = function () {
     var thrust = 0;
     if ((keys[this.KEY_THRUST]) && this.jump){
         this.jump = false;
-        this.jumpSound.play();
+        jumpSound.play();
         thrust += NOMINAL_JUMP;
     } else if ((keys[this.KEY_THRUST]) && this.hanging) {
 
@@ -194,7 +192,7 @@ Player.prototype.applyAccel = function (accelX, accelY, du) {
     if (g_useGravity) {
 
 	      var minY = this.sprite.height / 2 - 54;
-	      var maxY = g_canvas.height - minY - 43;
+	      var maxY = g_canvas.height - minY - 44;
 
 	       // Ignore the bounce if the Player is already in
 	        // the "border zone" (to avoid trapping them there)
@@ -249,7 +247,7 @@ Player.prototype.fireShotgun = function () {
 
     entityManager.fireBullet(
       this.cx + dX * launchDist +30, this.cy + dY * launchDist+50,
-      10,0.5,
+      10,0.2,
       1.5);
    entityManager.fireBullet(
      this.cx + dX * launchDist +30, this.cy + dY * launchDist+40,
@@ -257,12 +255,12 @@ Player.prototype.fireShotgun = function () {
      1.5);
    entityManager.fireBullet(
      this.cx + dX * launchDist +30, this.cy + dY * launchDist+30,
-     10,-0.5,
+     10,-0.2,
      1.5);
    }else{
      entityManager.fireBullet(
        this.cx + dX * launchDist -30, this.cy + dY * launchDist+50,
-       -10,0.5,
+       -10,0.2,
        -1.5);
     entityManager.fireBullet(
       this.cx + dX * launchDist -30, this.cy + dY * launchDist+40,
@@ -270,21 +268,22 @@ Player.prototype.fireShotgun = function () {
       -1.5);
     entityManager.fireBullet(
       this.cx + dX * launchDist -30, this.cy + dY * launchDist+30,
-      -10,-0.5,
+      -10,-0.2,
       -1.5);
     }
+    shotgunSound.play();
   }
 
 
 Player.prototype.maybeFireBullet = function () {
 
-    if (keys[this.KEY_FIRE] && this.canFire) {
+    if ((keys[this.KEY_FIRE] || keys[this.KEY_ALTFIRE]) && this.canFire) {
         this.canFire = false;
 
         if(this._gunType === "pistol"){
 
           this.firePistol();
-
+          pistolSound.play();
        }else if (this._gunType === "rocketLauncher") {
          /*var self = this;
          var spray = 5;
@@ -320,7 +319,7 @@ Player.prototype.maybeFireBullet = function () {
        var self = this;
        setTimeout(function () {
          self.canFire = true;
-       }, 1000);
+       }, 1200);
      }
 
 
@@ -339,21 +338,29 @@ Player.prototype.takeBulletHit = function () {
     if(this.life === 0){
       this._isDeadNow = true;
     }
+    deathSound.play();
 };
+
+var pistolReset = null;
 
 Player.prototype.takePickup = function (type) {
   if(type === "helth"){
     this.life ++;
+    healthPickupSound.play();
     spawnHealth = true;
+    return;
   }else if (type === "shotgun") {
     this._gunType = "shotgun";
+    shotgunPickupSound.play();
     spawnWeapon = true;
   }else if (type === "rocketLauncher") {
     this._gunType = "rocketLauncher";
+    rocketPickupSound.play()
     spawnWeapon = true;
   }
+  clearTimeout(pistolReset);
   var self = this;
-  setTimeout(function () {
+  pistolReset = setTimeout(function () {
     self._gunType = "pistol";
   }, 10000);
 
