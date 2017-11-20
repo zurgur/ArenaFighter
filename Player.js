@@ -317,6 +317,7 @@ Player.prototype.maybeFireBullet = function () {
           }
         }
         foo();
+        uziSound.play();
        }
        var self = this;
        setTimeout(function () {

@@ -49,6 +49,11 @@ var healthPickupSound = new Audio(
 var deathSound = new Audio (
   "sounds/death.wav"
 );
+
+var uziSound = new Audio (
+  "sounds/uzi.wav"
+);
+
 //global winCanvas stuff
 var winCanvas = document.getElementById('winCanvas');
 var winContext = winCanvas.getContext('2d');
