@@ -151,9 +151,9 @@ render: function(ctx) {
     }
 
     //ctx.translate(p.x*s,p.y*s);
-
-    g_sprites.back.drawBackrond(ctx,g_prevUpdateDu);
-
+    if(g_doClear){
+      g_sprites.back.drawBackrond(ctx,g_prevUpdateDu);
+    }
     var debugX = 10, debugY = 100;
     for (var c = 0; c < this._categories.length; ++c) {
 

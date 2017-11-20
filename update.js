@@ -61,7 +61,7 @@ function update(dt) {
 // Togglable Pause Mode
 //
 var KEY_PAUSE = 13;
-//var KEY_STEP  = 'O'.charCodeAt(0);
+var KEY_STEP  = 'N'.charCodeAt(0);
 
 var g_isUpdatePaused = true;
 
@@ -73,7 +73,8 @@ function shouldSkipUpdate() {
         intervals()
         console.log("start");
     }
-    return g_isUpdatePaused;
+    return g_isUpdatePaused && !eatKey(KEY_STEP);
+;
 }
 
 var spawnWeapon = true;

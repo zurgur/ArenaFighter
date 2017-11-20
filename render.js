@@ -18,7 +18,7 @@ function render(ctx) {
 
     // Process various option toggles
     //
-    if (eatKey(TOGGLE_CLEAR)){ g_doClear = !g_doClear; console.log("togle");}
+    if (eatKey(TOGGLE_CLEAR)){ g_doClear = !g_doClear; console.log(g_doClear);}
     if (eatKey(TOGGLE_BOX)) g_doBox = !g_doBox;
     if (eatKey(TOGGLE_UNDO_BOX)) g_undoBox = !g_undoBox;
     if (eatKey(TOGGLE_FLIPFLOP)) g_doFlipFlop = !g_doFlipFlop;
