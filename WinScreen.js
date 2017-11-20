@@ -1,6 +1,9 @@
 //global winCanvas stuff
 var winCanvas = document.getElementById('winCanvas');
 var winContext = winCanvas.getContext('2d');
+//just add the insturction canvas glabals
+var instruct = document.getElementById('instructions');
+var instructCTX = instruct.getContext('2d');
 
 //funtion tha takes in winer variable
 //and prints out the winner is "winer"

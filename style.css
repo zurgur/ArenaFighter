@@ -5,24 +5,27 @@ body{
 }
 #myCanvas{
   position: absolute;
-  top: 30%;
-  left: 25%;
-  margin-left: -300px;
-  margin-top: -250px;
+  top: 200px;
+  left: 200px;
+
 }
 #canvas{
   background: #ffffff;
   position: absolute;
-  top: 30%;
-  left: 25%;
-  margin-left: -300px;
-  margin-top: -250px;
+  top: 200px;
+  left: 200px;
+
 }
 #winCanvas{
   background: #ffffff;
   position: absolute;
-  top: 30%;
-  left: 25%;
-  margin-left: -300px;
-  margin-top: -250px;
+  top: 200px;
+  left: 200px;
+}
+#instructions {
+  background: #ffffff;
+  position: absolute;
+  top: 1001px;
+  left: 200px;
+
 }
