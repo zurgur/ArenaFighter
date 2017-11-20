@@ -80,7 +80,11 @@ findEntityInRange: function(posX, posY, radius) {
 },
 
 render: function(ctx) {
-  ctx.save()
+  ctx.save();
+  ctx.translate(g_canvas.width/2,g_canvas.height/2);
+  var s = entityManager.scale;
+  ctx.scale(s,s);
+  ctx.translate(-g_canvas.width/2,-g_canvas.height/2);
 
     var oldStyle = ctx.strokeStyle;
     ctx.strokeStyle = "red";
@@ -92,11 +96,12 @@ render: function(ctx) {
             util.strokeCircle(ctx, pos.posX, pos.posY, e.getRadius());
         }else {
           //ctx, x, y, w, h, style
-          util.fillBox(ctx, pos.posX, pos.posY-e.getRadius(),e.getWidth(),e.getRadius()*2);
+          util.fillBox(ctx, pos.posX, pos.posY,e.getWidth(),e.getRadius()*2);
         }
 
     }
     ctx.strokeStyle = oldStyle;
+    ctx.restore();
 },
 
 groundCollision: function(posX,posY,width,height){
