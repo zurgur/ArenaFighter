@@ -384,8 +384,10 @@ Player.prototype.updateMovement = function (du) {
     if (keys[this.KEY_LEFT]) {
         this.lastDirection = "left";
         this.counter ++;
-        this.animations = Math.floor((this.counter)/10 * du);
-        this.gunSprite = g_sprites.shotgun;
+        if(this.jump || this.hanging){
+          this.animations = Math.floor((this.counter)/10 * du);
+          this.gunSprite = g_sprites.shotgun;
+        }
         if(this.playerId === 1){
           this.sprite = g_sprites.playerrev;
         }else {
@@ -399,9 +401,10 @@ Player.prototype.updateMovement = function (du) {
     if (keys[this.KEY_RIGHT]){
       this.lastDirection = "right";
       this.gunSprite = g_sprites.shotgunrev;
-      this.counter ++;
-      this.animations = Math.floor((this.counter)/10 * du);
-
+      if(this.jump || this.hanging){
+        this.counter ++;
+        this.animations = Math.floor((this.counter)/10 * du);
+      }
       if(this.playerId === 1){
         this.sprite = g_sprites.player;
       }else {
