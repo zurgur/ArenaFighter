@@ -41,6 +41,8 @@ Pickup.prototype.update = function(du){
         hitEntity.takePickup("shotgun");
       }else if (this.sprite === g_sprites.rocketLauncher) {
         hitEntity.takePickup("rocketLauncher");
+      }else if (this.sprite === g_sprites.uzi) {
+        hitEntity.takePickup("uzi");
       }else {
         hitEntity.takePickup("helth");
       }

@@ -98,8 +98,8 @@ function intervals(){
     if (spawnWeapon){
       var Xpos = [600, 800, 1000];
       var Ypos = [50, 160, 300, 400, 700];
-      var type = [g_sprites.shotgun, g_sprites.rocketLauncher];
-      createInitialPickups(Xpos[Math.floor(Math.random() * 2)], Ypos[Math.floor(Math.random() * 4)], type[Math.round(Math.random())]);
+      var type = [g_sprites.shotgun, g_sprites.rocketLauncher, g_sprites.uzi];
+      createInitialPickups(Xpos[Math.floor(Math.random() * 2)], Ypos[Math.floor(Math.random() * 4)], type[Math.floor(Math.random() * 3)]);
       spawnWeapon = false;
     }
   }, 10000);

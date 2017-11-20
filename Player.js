@@ -285,16 +285,7 @@ Player.prototype.maybeFireBullet = function () {
           this.firePistol();
           pistolSound.play();
        }else if (this._gunType === "rocketLauncher") {
-         /*var self = this;
-         var spray = 5;
-         function foo(){
-          if (spray > 0){
-            self.firePistol();
-            spray--;
-            setTimeout( foo, 100 );
-          }
-        }
-        foo();*/
+
         var dX = +Math.sin(this.rotation);
         var dY = -Math.cos(this.rotation);
         var launchDist = this.getRadius() * 1.2;
@@ -315,6 +306,17 @@ Player.prototype.maybeFireBullet = function () {
         }
        }else if (this._gunType === "shotgun") {
          this.fireShotgun();
+       }else if(this._gunType === "uzi"){
+         var self = this;
+         var spray = 5;
+         function foo(){
+          if (spray > 0){
+            self.firePistol();
+            spray--;
+            setTimeout( foo, 100 );
+          }
+        }
+        foo();
        }
        var self = this;
        setTimeout(function () {
@@ -357,7 +359,10 @@ Player.prototype.takePickup = function (type) {
     this._gunType = "rocketLauncher";
     rocketPickupSound.play()
     spawnWeapon = true;
+  }else if (type === "uzi") {
+    this._gunType = "uzi";
   }
+
   clearTimeout(pistolReset);
   var self = this;
   pistolReset = setTimeout(function () {
@@ -429,8 +434,7 @@ Player.prototype.updateMovement = function (du) {
 		self.still = true;
 	  }, 200);
     }
-	console.log(this.still);
-	
+
 };
 
 Player.prototype.drawHealth = function (ctx){
