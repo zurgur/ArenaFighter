@@ -27,6 +27,7 @@ function Player(descr) {
     this._scale = 1;
     this.jump = false;
     this.hanging = false;
+	this.still = false;
     this.life = 5;
     this.lastDirection = "right";
     this.savePos = [[200,200],[1400,200],[470,500],[1000,600],[1000,1000]];
@@ -378,6 +379,7 @@ Player.prototype.halt = function () {
 };
 
 var NOMINAL_MOVEMENT_RATE = 3;
+var idleReset = null;
 
 Player.prototype.updateMovement = function (du) {
     var rate = NOMINAL_MOVEMENT_RATE * du;
@@ -398,6 +400,12 @@ Player.prototype.updateMovement = function (du) {
         if (!spatialManager.groundCollision(this.cx-rate, this.cy, this.width, this.height)){
           this.cx -= NOMINAL_MOVEMENT_RATE * du;
         }
+		clearTimeout(idleReset);
+		this.still = false;
+		var self = this;
+		idleReset = setTimeout(function () {
+		self.still = true;
+	  }, 200);
     }
     if (keys[this.KEY_RIGHT]){
       this.lastDirection = "right";
@@ -414,7 +422,15 @@ Player.prototype.updateMovement = function (du) {
       if (!spatialManager.groundCollision(this.cx+rate, this.cy, this.width, this.height)){
         this.cx += NOMINAL_MOVEMENT_RATE * du;
       }
+	  clearTimeout(idleReset);
+	  this.still = false;
+	  var self = this;
+	  idleReset = setTimeout(function () {
+		self.still = true;
+	  }, 200);
     }
+	console.log(this.still);
+	
 };
 
 Player.prototype.drawHealth = function (ctx){
@@ -444,7 +460,7 @@ Player.prototype.render = function (ctx) {
       ctx.translate(-this.cx,-this.cy);
     }
     this.sprite.drawFrameAt(
-	ctx, this.cx, this.cy, this.rotation,0,this.animations
+	ctx, this.cx, this.cy, this.rotation,0,this.animations, this.still
     );
 
     this.gunSprite.drawWrappedCentredAt(

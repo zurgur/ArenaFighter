@@ -63,7 +63,7 @@ Sprite.prototype.drawWrappedCentredAt = function (ctx, cx, cy, rotation) {
 
 
 };
-Sprite.prototype.drawFrameAt = function (ctx,cx,cy,rotation,row,colum) {
+Sprite.prototype.drawFrameAt = function (ctx,cx,cy,rotation,row,colum, still) {
   if (rotation === undefined) rotation = 0;
   if (row === undefined) row = 1;
   if (colum === undefined) colum = 0;
@@ -80,9 +80,14 @@ Sprite.prototype.drawFrameAt = function (ctx,cx,cy,rotation,row,colum) {
 
   //this draws the mid off the sprite sheet wher the animasion is hapening 
   try{
+	if (still) {
+		ctx.drawImage(this.image,walkingmod*frameWidth*0,frameHeigth,frameWidth,
+		frameHeigth/2,-w/8, -h/6,frameWidth,frameHeigth*0.5);
+	}
+	else {
     ctx.drawImage(this.image,walkingmod*frameWidth,frameHeigth*0.5,frameWidth,
       frameHeigth/2,-w/8, -h/6,frameWidth,frameHeigth*0.5);
-
+	}
   }
   catch(err) {
   console.log(err);
