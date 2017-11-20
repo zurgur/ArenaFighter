@@ -46,7 +46,7 @@ var g_ctx = g_canvas.getContext("2d");
 // CREATE INITIAL SHIPS
 // ====================
 
-function createInitialShips() {
+function createInitialPlayers() {
     entityManager.generatePlayer({
       cx : 200,
       cy : 200,
@@ -193,7 +193,6 @@ function requestPreloads() {
         player2  : "sprites/player2Sprite.png",
         revPlayer2  : "sprites/revplayer2Sprite.png",
         revPlayer  : "sprites/revplayerSprite.png",
-        rock   : "sprites/rock.png",
         cake   : "sprites/cake.png",
         rocketLauncher : "sprites/rocketLauncher.png",
         shotgun: "sprites/ShotGun.png",
@@ -215,7 +214,6 @@ function preloadDone() {
     g_sprites.player2 = new Sprite(g_images.player2);
     g_sprites.playerrev = new Sprite(g_images.revPlayer);
     g_sprites.player2rev = new Sprite(g_images.revPlayer2);
-    g_sprites.rock  = new Sprite(g_images.rock);
     g_sprites.cake  = new Sprite(g_images.cake);
     g_sprites.rocketLauncher = new Sprite(g_images.rocketLauncher);
     g_sprites.shotgun = new Sprite(g_images.shotgun);
@@ -226,7 +224,7 @@ function preloadDone() {
     context, 801, 400, 0
     );
     entityManager.init();
-    createInitialShips();
+    createInitialPlayers();
 
     createInitialGrounds(200, 550, 200, 15);
     createInitialGrounds(1600-200, 550, 200, 15);

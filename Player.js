@@ -130,17 +130,16 @@ Player.prototype.update = function (du) {
 Player.prototype.computeSubStep = function (du) {
 
     var thrust = this.computeThrustMag();
-
     // Apply thrust directionally, based on our rotation
-    var accelX = +Math.sin(this.rotation) * thrust;
-    var accelY = -Math.cos(this.rotation) * thrust;
+    var accelY = -thrust;
+    //console.log(this.computeGravity());
     accelY += this.computeGravity();
-    this.applyAccel(accelX, accelY, 1);
+    this.applyAccel(0, accelY, 1);
 
     this.wrapPosition();
 
     if (thrust === 0 || g_allowMixedActions) {
-        this.updateRotation(du);
+        this.updateMovement(du);
     }
 };
 
@@ -157,7 +156,7 @@ Player.prototype.computeThrustMag = function () {
     if ((keys[this.KEY_THRUST]) && this.jump){
         this.jump = false;
         jumpSound.play();
-        thrust += NOMINAL_JUMP;
+        thrust = NOMINAL_JUMP;
     } else if ((keys[this.KEY_THRUST]) && this.hanging) {
 
           thrust = NOMINAL_JUMP;
@@ -169,21 +168,13 @@ Player.prototype.computeThrustMag = function () {
 };
 
 Player.prototype.applyAccel = function (accelX, accelY, du) {
-    // u = original velocity
-    var oldVelX = this.velX;
-    var oldVelY = this.velY;
 
     // v = u + at
     this.velX += accelX * du;
     this.velY += accelY * du;
 
-    // v_ave = (u + v) / 2
-    var aveVelX = (oldVelX + this.velX) / 2;
-    var aveVelY = (oldVelY + this.velY) / 2;
-
-    // Decide whether to use the average or not (average is best!)
-    var intervalVelX = g_useAveVel ? aveVelX : this.velX;
-    var intervalVelY = g_useAveVel ? aveVelY : this.velY;
+    var intervalVelX =  this.velX;
+    var intervalVelY =  this.velY;
 
     // s = s + v_ave * t
     var nextX = this.cx + intervalVelX * du;
@@ -380,7 +371,7 @@ Player.prototype.halt = function () {
 
 var NOMINAL_MOVEMENT_RATE = 3;
 
-Player.prototype.updateRotation = function (du) {
+Player.prototype.updateMovement = function (du) {
     var rate = NOMINAL_MOVEMENT_RATE * du;
     if (keys[this.KEY_LEFT]) {
         this.lastDirection = "left";
