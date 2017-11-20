@@ -33,8 +33,6 @@ _entities : [],
 
 getNewSpatialID : function() {
 
-    // TODO: YOUR STUFF HERE!
-
     return this._nextSpatialID++;
 },
 
@@ -42,13 +40,12 @@ register: function(entity) {
     var pos = entity.getPos();
     var spatialID = entity.getSpatialID();
 
-    // TODO: YOUR STUFF HERE!
     this._entities.splice(spatialID,0,entity);
 },
 
 unregister: function(entity) {
     var spatialID = entity.getSpatialID();
-    // TODO: YOUR STUFF HERE!
+
     for (let i = 0; i < this._entities.length; i++) {
       let ent = this._entities[i];
       if (ent instanceof Entity) {
@@ -63,7 +60,6 @@ unregister: function(entity) {
 
 findEntityInRange: function(posX, posY, radius) {
 
-    // TODO: YOUR STUFF HERE!
   for (let i = 0; i < this._entities.length; i++) {
 		let ent = this._entities[i];
 		if (ent) {

@@ -86,6 +86,6 @@ Rocket.prototype.render = function (ctx) {
     var x = this.trail[i][0];
     var y = this.trail[i][1];
     ctx.fillStyle = 'red';
-    util.fillCircle(ctx,x,y,7 - i/10);
+    util.fillCircle(ctx,x,y,7 - i/8);
   }
 };
