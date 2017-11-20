@@ -168,13 +168,21 @@ Player.prototype.computeThrustMag = function () {
 };
 
 Player.prototype.applyAccel = function (accelX, accelY, du) {
+    // u = original velocity
+    var oldVelX = this.velX;
+    var oldVelY = this.velY;
 
     // v = u + at
     this.velX += accelX * du;
     this.velY += accelY * du;
 
-    var intervalVelX =  this.velX;
-    var intervalVelY =  this.velY;
+    // v_ave = (u + v) / 2
+    var aveVelX = (oldVelX + this.velX) / 2;
+    var aveVelY = (oldVelY + this.velY) / 2;
+
+    // Decide whether to use the average or not (average is best!)
+    var intervalVelX = g_useAveVel ? aveVelX : this.velX;
+    var intervalVelY = g_useAveVel ? aveVelY : this.velY;
 
     // s = s + v_ave * t
     var nextX = this.cx + intervalVelX * du;
