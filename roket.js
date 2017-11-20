@@ -5,7 +5,7 @@ function Rocket(descr) {
    this.setup(descr);
    this.sprite = this.sprite || g_sprites.bullet;
    this.radius = 0.5;
-
+   this.trail = [];
    this.fireSound.play();
 }
 Rocket.prototype = new Entity();
@@ -25,24 +25,22 @@ Rocket.prototype.type = "Rocket";
 
 
 Rocket.prototype.update = function (du) {
+  //unregiser so it wont afect the other tests
   spatialManager.unregister(this);
   if (this._isDeadNow) {
     return entityManager.KILL_ME_NOW;
   }
-  //this.lifeSpan -= du;
-  //if (this.lifeSpan < 0) return entityManager.KILL_ME_NOW;
-
+  //update the x and y of the Rocket
   this.cx += this.velX * du;
   this.cy += this.velY * du;
   this.velY += 0.1;
 
-
   this.rotation = util.wrapRange(this.rotation,
                                  0, consts.FULL_CIRCLE);
-
+  //wrap if need be
   this.wrapPosition();
 
-
+  //if the bullet hits somthing it Exposion
   var hitEntity = this.findHitEntity();
   if (hitEntity) {
       var canTakeHit = hitEntity.takeBulletHit;
@@ -54,31 +52,40 @@ Rocket.prototype.update = function (du) {
         return entityManager.KILL_ME_NOW;
 
   }
+  //sets the x and y at the front off the arry
+  this.trail.unshift([this.cx,this.cy]);
+  //clamp the trail length
+  if(this.trail.length > 40){
+    this.trail.length = 40;
+  }
+
+  //re regiser
   spatialManager.register(this);
 };
-
+//returns the rasius for use in the spatialManager
 Rocket.prototype.getRadius = function () {
     return this.radius;
 };
-
+//if the rocket takes a bullet hit
 Rocket.prototype.takeBulletHit = function () {
     this.kill();
-
 };
-
+//renders the roket
 Rocket.prototype.render = function (ctx) {
-
-    var fadeThresh = Bullet.prototype.lifeSpan / 3;
-
-    if (this.lifeSpan < fadeThresh) {
-        ctx.globalAlpha = this.lifeSpan / fadeThresh;
-    }
+    //save the original scale for later use
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
     this.sprite.scale = this.radius;
     this.sprite.drawWrappedCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );
+    //change the scale back to original scale
     this.sprite.scale = origScale;
-    ctx.globalAlpha = 1;
+
+  for(var i = 0 ; i<this.trail.length;i++){
+    var x = this.trail[i][0];
+    var y = this.trail[i][1];
+    ctx.fillStyle = 'red';
+    util.fillCircle(ctx,x,y,7 - i/10);
+  }
 };
