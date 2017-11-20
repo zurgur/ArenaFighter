@@ -5,7 +5,7 @@ body{
 }
 #myCanvas{
   position: absolute;
-  margin-top:150px;
+  margin-top:50px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -15,7 +15,7 @@ body{
 #canvas{
   background: #ffffff;
   position: absolute;
-  margin-top:150px;
+  margin-top:50px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -25,7 +25,7 @@ body{
 #winCanvas{
   background: #ffffff;
   position: absolute;
-  margin-top:150px;
+  margin-top:50px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -34,7 +34,7 @@ body{
 #instructions {
   background: #ffffff;
   position: absolute;
-  margin-top:951px;
+  margin-top:851px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
