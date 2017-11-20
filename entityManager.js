@@ -140,7 +140,7 @@ update: function(du) {
 
 render: function(ctx) {
     ctx.save();
-    if(!this._players.length ===2){
+    if(this._players.length ===2){
       var s = Scale.Camera(ctx, this._players[0],this._players[1]);
       var p = Scale.Point(this._players[0],this._players[1]);
       ctx.translate(g_canvas.width/2,g_canvas.height/2);
