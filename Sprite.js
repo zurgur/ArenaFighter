@@ -77,10 +77,8 @@ Sprite.prototype.drawFrameAt = function (ctx,cx,cy,rotation,row,colum) {
   var frameWidth = this.width/5;
   var frameHeigth = this.height/1.5;
   var walkingmod = colum%4;//123
-  //ctx.scale(this.scale, this.scale);
 
-  // drawImage expects "top-left" coords, so we offset our destination
-  // coords accordingly, to draw our sprite centred at the origin
+  //this draws the mid off the sprite sheet wher the animasion is hapening 
   try{
     ctx.drawImage(this.image,walkingmod*frameWidth,frameHeigth*0.5,frameWidth,
       frameHeigth/2,-w/8, -h/6,frameWidth,frameHeigth*0.5);
