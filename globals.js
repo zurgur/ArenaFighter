@@ -49,3 +49,11 @@ var healthPickupSound = new Audio(
 var deathSound = new Audio (
   "sounds/death.wav"
 );
+//global winCanvas stuff
+var winCanvas = document.getElementById('winCanvas');
+var winContext = winCanvas.getContext('2d');
+//just add the insturction canvas glabals
+var instruct = document.getElementById('instructions');
+var instructCTX = instruct.getContext('2d');
+//global for finishing
+var hasFinesed = false;

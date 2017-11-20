@@ -72,6 +72,10 @@ function shouldSkipUpdate() {
         winCanvas.height = 0;
         intervals()
         console.log("start");
+        if(hasFinesed){
+          console.log("halú");
+          location.reload();
+        }
     }
     return g_isUpdatePaused && !eatKey(KEY_STEP);
 ;
