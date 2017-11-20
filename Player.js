@@ -149,7 +149,7 @@ Player.prototype.computeGravity = function () {
     return g_useGravity ? NOMINAL_GRAVITY : 0;
 };
 
-var NOMINAL_JUMP = 7;
+var NOMINAL_JUMP = 8;
 
 Player.prototype.computeThrustMag = function () {
     var thrust = 0;
