@@ -11,6 +11,6 @@ function wictory(winer){
   winContext.textAlign = "center";
   winContext.font = "50px Impact";
   winContext.fillText("The winner is: "+ winer, 1600/2,800/2);
-  winContext.fillText("press Enter to play agin",1600/2,800/2+100);
+  winContext.fillText("press Enter to play again",1600/2,800/2+100);
 
 }
