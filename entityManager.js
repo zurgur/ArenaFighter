@@ -168,8 +168,10 @@ render: function(ctx) {
     }
 
     ctx.restore();
-    this._players[0].drawHealth(ctx);
-    this._players[1].drawHealth(ctx);
+    if(this._players.length ===2){
+      this._players[0].drawHealth(ctx);
+      this._players[1].drawHealth(ctx);
+  }
 }
 
 }
