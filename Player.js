@@ -386,8 +386,9 @@ Player.prototype.updateMovement = function (du) {
         this.counter ++;
         if(this.jump || this.hanging){
           this.animations = Math.floor((this.counter)/10 * du);
-          this.gunSprite = g_sprites.shotgun;
         }
+        this.gunSprite = g_sprites.shotgun;
+
         if(this.playerId === 1){
           this.sprite = g_sprites.playerrev;
         }else {
